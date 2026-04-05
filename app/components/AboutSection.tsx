@@ -1,10 +1,20 @@
+"use client"; // Wajib ditambahkan karena animasi berjalan di browser client
+
+import { motion } from 'framer-motion';
+
 export default function AboutSection() {
   return (
-    <section id="about" className="bg-gradient-to-b from-[#1C1C1C] to-[#261502] w-full py-24">
+    <section id="about" className="bg-gradient-to-b from-[#1C1C1C] to-[#261502] w-full py-24 overflow-hidden">
       <div className="container mx-auto px-6 lg:px-16 flex flex-col md:flex-row gap-16 items-center">
         
-        {/* Kiri: Area Gambar / Kolase */}
-        <div className="flex-1 relative w-full">
+        {/* Kiri: Area Gambar / Kolase (Animasi masuk dari Kiri) */}
+        <motion.div 
+          className="flex-1 relative w-full"
+          initial={{ opacity: 0, x: -50 }} // Posisi awal: transparan & geser ke kiri 50px
+          whileInView={{ opacity: 1, x: 0 }} // Posisi akhir: terlihat jelas & kembali ke tengah
+          viewport={{ once: true, amount: 0.3 }} // Animasi jalan 1x saat 30% elemen terlihat
+          transition={{ duration: 0.8, ease: "easeOut" }} // Durasi animasi 0.8 detik
+        >
           <div className="grid grid-cols-2 gap-4">
             <div className="h-40 bg-[#121212] border border-gray-800 rounded-xl"></div>
             <div className="h-40 bg-[#1a1a1a] border border-gray-800 rounded-xl"></div>
@@ -15,10 +25,16 @@ export default function AboutSection() {
             <p className="text-2xl">1+ Years</p>
             <p className="text-sm">Experience</p>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Kanan: Teks & Skill */}
-        <div className="flex-1 space-y-6">
+        {/* Kanan: Teks & Skill (Animasi masuk dari Bawah) */}
+        <motion.div 
+          className="flex-1 space-y-6"
+          initial={{ opacity: 0, y: 50 }} // Posisi awal: transparan & turun 50px
+          whileInView={{ opacity: 1, y: 0 }} // Posisi akhir: normal
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} // Ada delay 0.2s biar munculnya bergantian sama gambar
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-white">
             About <span className="text-[#FF8A00]">Me</span>
           </h2>
@@ -47,7 +63,7 @@ export default function AboutSection() {
               <p className="text-gray-400 text-sm">UI/UX Design, Figma</p>
             </div>
           </div>
-        </div>
+        </motion.div>
         
       </div>
     </section>
