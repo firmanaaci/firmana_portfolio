@@ -44,7 +44,7 @@ export default function HeroSection() {
           >
             <div className="flex flex-wrap gap-4">
               <Button text="Contact Me ➔" href="#kontak" type="primary" />
-              <Button text="Download CV" href="#" type="outline" />
+              <Button text="Download CV" href="/CV-Firmana.pdf" type="outline" isDownload={true} />
             </div>
 
             <div className="flex items-center gap-6">

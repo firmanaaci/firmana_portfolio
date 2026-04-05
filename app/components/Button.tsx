@@ -4,9 +4,10 @@ type ButtonProps = {
   text: string;
   href: string;
   type?: "primary" | "secondary" | "outline";
+  isDownload?: boolean; // Tambahan agar tombol tahu ini untuk unduh file
 };
 
-export default function Button({ text, href, type = "primary" }: ButtonProps) {
+export default function Button({ text, href, type = "primary", isDownload = false }: ButtonProps) {
   const baseStyle = "px-6 py-3 rounded-full font-medium transition-all duration-300 inline-flex items-center justify-center";
   
   let styles = "";
@@ -18,6 +19,16 @@ export default function Button({ text, href, type = "primary" }: ButtonProps) {
     styles = "bg-[#1E1E1E] text-white hover:bg-gray-800 border border-gray-700";
   }
 
+  // Jika tombol ini adalah tombol Download, gunakan tag <a> biasa dengan atribut download
+  if (isDownload) {
+    return (
+      <a href={href} download className={`${baseStyle} ${styles}`}>
+        {text}
+      </a>
+    );
+  }
+
+  // Jika bukan tombol download, gunakan Link dari Next.js seperti biasa
   return (
     <Link href={href} className={`${baseStyle} ${styles}`}>
       {text}
