@@ -2,8 +2,8 @@ export default function Footer() {
   const tahun = new Date().getFullYear();
   
   return (
-    <footer className="p-8 mt-20 text-center bg-gray-50 border-t border-gray-200 text-gray-500">
-      <p>© {tahun} Nama Kamu. Dibuat menggunakan Next.js & Tailwind CSS.</p>
-    </footer>
+   <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm bg-[#121212]">
+        <p>© {new Date().getFullYear()} Firmana Amri Subekhi. All rights reserved.</p>
+      </footer>
   );
 }

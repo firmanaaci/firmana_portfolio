@@ -6,16 +6,16 @@ import Footer from './components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    <div className="min-h-screen flex flex-col font-sans bg-[#121212]">
       <Header />
       
-      <main className="flex-grow container mx-auto px-6 lg:px-16">
+      {/* Container dihapus dari sini agar background section bisa full-width */}
+      <main className="flex-grow">
         <HeroSection />
         <ServicesSection />
         <AboutSection />
       </main>
       
-      {/* Simple Footer */}
       <Footer />
     </div>
   );
