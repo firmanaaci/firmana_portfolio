@@ -1,9 +1,12 @@
 export default function Footer() {
-  const tahun = new Date().getFullYear();
-  
   return (
-   <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm bg-[#121212]">
-        <p>© {new Date().getFullYear()} Firmana Amri Subekhi. All rights reserved.</p>
-      </footer>
+    <footer className="border-t border-[#d9d0c0] py-8 text-center text-[#6b7565] text-sm bg-[#f4efe4]">
+      <p>
+        © {new Date().getFullYear()} Firmana Amri Subekhi. All rights reserved.
+      </p>
+      <p className="mt-2 text-l text-[#7c8575]">
+        Built With Next.JS &amp; Tailwind.CSS
+      </p>
+    </footer>
   );
 }

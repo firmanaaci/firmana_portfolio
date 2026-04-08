@@ -34,3 +34,33 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## SEO setup for Google Search
+
+This project already includes:
+
+- Global metadata in `app/layout.tsx`
+- Structured data (JSON-LD Person schema) in `app/page.tsx`
+- Dynamic `robots.txt` in `app/robots.ts`
+- Dynamic `sitemap.xml` in `app/sitemap.ts`
+
+To make indexing work correctly in production:
+
+1. Set your public domain URL:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
+
+2. (Optional but recommended) add Google Search Console verification token:
+
+```bash
+GOOGLE_SITE_VERIFICATION=your_google_token
+```
+
+3. Deploy the app and ensure these URLs are accessible:
+
+- `https://your-domain.com/robots.txt`
+- `https://your-domain.com/sitemap.xml`
+
+4. Submit your sitemap in Google Search Console.
