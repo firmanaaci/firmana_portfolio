@@ -35,7 +35,7 @@ export default function AboutSection() {
             </div>
             {/* Kotak 3: Desain UI / Figma */}
             <div className="h-40 md:h-48 bg-[#f1ebdf] border border-[#d9d0c0] rounded-xl overflow-hidden group">
-              <img src="/poto.jpeg" alt="UI Design" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" />
+              <img src="/POTO.jpeg" alt="UI Design" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" />
             </div>
             {/* Kotak 4: Foto Candid / Pendadaran */}
             <div className="h-40 md:h-48 bg-[#e8e3d5] border border-[#d9d0c0] rounded-xl overflow-hidden group">
