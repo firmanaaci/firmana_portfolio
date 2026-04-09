@@ -11,16 +11,10 @@ export default function ServicesSection() {
       icon: "💻",
     },
     {
-      title: "Mobile Development",
+      title: "Fullstack Development",
       description:
-        "Pengembangan aplikasi mobile yang mulus dan intuitif untuk memberikan pengalaman terbaik di berbagai perangkat genggam.",
-      icon: "📱",
-    },
-    {
-      title: "UI/UX Design",
-      description:
-        "Merancang antarmuka pengguna (UI) yang estetis dan fungsional dengan fokus pada kenyamanan pengguna (User Experience).",
-      icon: "🎨",
+        "Pengembangan aplikasi fullstack yang terintegrasi, memastikan kinerja optimal di sisi frontend dan backend.",
+      icon: "⚙️",
     },
   ];
 
@@ -45,7 +39,7 @@ export default function ServicesSection() {
 
         {/* Container Kartu (Animasi Staggered Delay untuk Anak-anaknya) */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
           initial="hidden" // Keadaan awal container: tersembunyi
           whileInView="visible" // Keadaan target container: terlihat
           viewport={{ once: true, amount: 0.3 }} // Animasi jalan 1x saat 30% terlihat

@@ -32,17 +32,18 @@ export default function HeroSection() {
             className="text-xl text-[#51604b] font-medium"
             transition={{ delay: 0.3 }} // Penundaan muncul bergantian
           >
-            Fullstack Developer & UI Designer
+            Fullstack Developer
           </motion.h2>
           <motion.p
             className="text-[#5f695b] max-w-lg leading-relaxed text-justify"
             transition={{ delay: 0.4 }} // Penundaan muncul bergantian
           >
-            Fresh Graduate dari jurusan Teknik Informatika yang berdedikasi merancang dan
-            mengembangkan sistem perangkat lunak yang fungsional. Berbekal pengalaman dari
-            proyek pengembangan aplikasi dan pengujian sistem semasa kuliah, saya terbiasa
-            bekerja secara mandiri maupun dalam tim. Komunikatif, adaptif, dan siap
-            memberikan solusi teknologi yang efisien untuk menjawab tantangan di dunia kerja
+            Fresh Graduate dari jurusan Teknik Informatika yang berdedikasi
+            merancang dan mengembangkan sistem perangkat lunak yang fungsional.
+            Berbekal pengalaman dari proyek pengembangan aplikasi dan pengujian
+            sistem semasa kuliah, saya terbiasa bekerja secara mandiri maupun
+            dalam tim. Komunikatif, adaptif, dan siap memberikan solusi
+            teknologi yang efisien untuk menjawab tantangan di dunia kerja
             profesional.
           </motion.p>
 
@@ -101,22 +102,26 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Statistik */}
+          {/* Info singkat */}
           <motion.div
-            className="flex gap-10 pt-10 border-t border-[#d9d0c0] mt-8"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t border-[#d9d0c0] mt-8"
             transition={{ delay: 0.6 }} // Penundaan muncul bergantian
           >
-            <div>
-              <p className="text-3xl font-bold text-[#6f8f5f]">3+</p>
-              <p className="text-sm text-[#6b7565]">Proyek</p>
+            <div className="rounded-2xl border border-[#d9d0c0] bg-[#fbf8f1]/90 backdrop-blur-sm px-5 py-4 shadow-sm shadow-black/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-[#6b7565]">
+                Asal
+              </p>
+              <p className="mt-2 text-lg md:text-xl font-bold text-[#3c4a36] leading-snug">
+                Kabupaten Pemalang
+              </p>
             </div>
-            <div>
-              <p className="text-3xl font-bold text-[#6f8f5f]">1+</p>
-              <p className="text-sm text-[#6b7565]">Tahun Pengalaman</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-[#6f8f5f]">2+</p>
-              <p className="text-sm text-[#6b7565]">Klien</p>
+            <div className="rounded-2xl border border-[#d9d0c0] bg-[#fbf8f1]/90 backdrop-blur-sm px-5 py-4 shadow-sm shadow-black/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-[#6b7565]">
+                Universitas
+              </p>
+              <p className="mt-2 text-lg md:text-xl font-bold text-[#3c4a36] leading-snug">
+                Universitas Muhammadiyah Surakarta
+              </p>
             </div>
           </motion.div>
         </motion.div>

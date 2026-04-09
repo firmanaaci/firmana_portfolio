@@ -31,7 +31,7 @@ export default function AboutSection() {
             </div>
             {/* Kotak 2: Cuplikan Kode / Skripsi */}
             <div className="h-40 md:h-48 bg-[#f1ebdf] border border-[#d9d0c0] rounded-xl overflow-hidden group">
-              <img src="/hiii.jpg" alt="Coding" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" />
+              <img src="/nag.png" alt="Coding" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" />
             </div>
             {/* Kotak 3: Desain UI / Figma */}
             <div className="h-40 md:h-48 bg-[#f1ebdf] border border-[#d9d0c0] rounded-xl overflow-hidden group">
@@ -45,8 +45,8 @@ export default function AboutSection() {
 
           {/* Badge Pengalaman */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#6f8f5f] text-[#fbf8f1] font-bold px-8 py-5 rounded-2xl text-center shadow-xl shadow-[#6f8f5f]/30 border border-[#88a679]">
-            <p className="text-3xl">1+ Years</p>
-            <p className="text-sm font-medium tracking-wide mt-1 text-[#e8e3d5]">Experience</p>
+            <p className="text-3xl">Gallery</p>
+            
           </div>
         </motion.div>
 
@@ -104,8 +104,7 @@ export default function AboutSection() {
               </h4>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-[#6f8f5f]/10 text-[#4f6f44] text-sm font-semibold rounded-full border border-[#6f8f5f]/20 hover:bg-[#6f8f5f] hover:text-white transition-colors cursor-default">Figma</span>
-                <span className="px-3 py-1 bg-[#6f8f5f]/10 text-[#4f6f44] text-sm font-semibold rounded-full border border-[#6f8f5f]/20 hover:bg-[#6f8f5f] hover:text-white transition-colors cursor-default">Wireframing</span>
-                <span className="px-3 py-1 bg-[#6f8f5f]/10 text-[#4f6f44] text-sm font-semibold rounded-full border border-[#6f8f5f]/20 hover:bg-[#6f8f5f] hover:text-white transition-colors cursor-default">Prototyping</span>
+                
               </div>
             </div>
           </div>

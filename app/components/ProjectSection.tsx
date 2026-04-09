@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-// Tipe data untuk struktur portofolio kita
 type GitHubProject = {
   title: string;
   client: string;
@@ -13,11 +12,10 @@ type GitHubProject = {
   url: string;
 };
 
-// 👇 TAMBAHAN BARU: Tipe data khusus untuk balasan mentah dari GitHub API
 type GitHubRepoResponse = {
   name: string;
   visibility: string;
-  description: string | null; // Bisa null kalau kamu gak ngisi deskripsi di github
+  description: string | null;
   language: string | null;
   stargazers_count: number;
   forks_count: number;
@@ -28,47 +26,45 @@ export default function ProjectSection() {
   const [projects, setProjects] = useState<GitHubProject[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
- useEffect(() => {
-    // ⚠️ Pastikan ini username aslimu!
+  useEffect(() => {
+    // ⚠️ GANTI INI DENGAN USERNAME ASLIMU YA!
     const githubUsername = "firmanaamri"; 
     
     fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=4`)
       .then((res) => res.json())
       .then((data) => {
-        
-        // JIKA KENA LIMIT GITHUB / ERROR
         if (!Array.isArray(data)) {
           console.warn("Limit API GitHub tercapai. Menggunakan data cadangan.");
-          // Masukkan data manual sebagai cadangan sementara
+          // Data cadangan sementara
           setProjects([
             {
-              title: "Sistem Manajemen Inventaris",
-              client: "Toko Bangunan Jaya Prana",
-              description: "Aplikasi pencatatan stok barang, transaksi, dan pelaporan yang dirancang khusus untuk operasional toko bangunan. Diuji menggunakan Black Box Testing dan System Usability Scale.",
-              techStack: ["Laravel", "MySQL", "Bootstrap"],
-              highlight: "Website Offline / Local",
-              url: "https://github.com/firmanaamri",
+              title: "Toko Bangunan",
+              client: "Public Repository",
+              description: "Sistem Manajemen Inventaris untuk pencatatan stok barang, transaksi, dan pelaporan.",
+              techStack: ["PHP"], 
+              highlight: "⭐ 0 | 🍴 0",
+              url: "#",
             },
             {
-              title: "Integrasi Machine Learning",
-              client: "Proyek Riset",
-              description: "Eksplorasi penerapan algoritma machine learning pada sistem manajemen gudang untuk optimasi stok dan otomatisasi pencatatan.",
-              techStack: ["Python", "React", "API"],
-              highlight: "Proyek Riset",
-              url: "https://github.com/firmanaamri",
+              title: "Booking Kos",
+              client: "Public Repository",
+              description: "Aplikasi pemesanan kamar kos berbasis web dengan fitur pencarian dan filter lokasi.",
+              techStack: ["JavaScript"],
+              highlight: "⭐ 0 | 🍴 0",
+              url: "#",
             }
           ]);
           setIsLoading(false);
-          return; // Hentikan proses fetch di sini
+          return;
         }
 
-        // JIKA BERHASIL MENGAMBIL DATA DARI GITHUB
         const formattedProjects = data.map((repo: GitHubRepoResponse) => ({
           title: repo.name.replace(/-/g, ' ').replace(/_/g, ' '), 
           client: repo.visibility === "public" ? "Public Repository" : "Private Repository",
           description: repo.description || "Tidak ada deskripsi yang disertakan pada repositori ini.",
+          // Mengambil bahasa utama dari GitHub (misal: PHP, TypeScript, JavaScript)
           techStack: repo.language ? [repo.language] : ["Code"], 
-          highlight: `⭐ ${repo.stargazers_count} Stars | 🍴 ${repo.forks_count} Forks`,
+          highlight: `⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}`,
           url: repo.html_url,
         }));
 
@@ -82,11 +78,10 @@ export default function ProjectSection() {
   }, []);
 
   return (
-    <section
-      id="projects"
-      className="relative w-full py-24 overflow-hidden border-t border-white/5"
-    >
+    <section id="projects" className="relative w-full py-24 overflow-hidden border-t border-[#d9d0c0]/30 bg-[#f7f3eb]">
       <div className="container mx-auto px-6 lg:px-16">
+        
+        {/* Header Section */}
         <motion.div
           className="text-center mb-14"
           initial={{ opacity: 0, y: 40 }}
@@ -94,75 +89,105 @@ export default function ProjectSection() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <p className="text-sm uppercase tracking-[0.22em] text-[#6f8f5f] mb-3">
+          <p className="text-sm uppercase tracking-[0.22em] text-[#6f8f5f] font-semibold mb-3">
             Portfolio
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 text-[#1f2a1e]">
-            Proyek Unggulan
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#1f2a1e]">
+            Proyek GitHub
           </h2>
-          <p className="text-[#5f695b] max-w-2xl mx-auto">
-            Beberapa karya yang merepresentasikan pendekatan saya dalam
-            membangun produk digital: cepat, terukur, dan fokus pada kebutuhan
-            pengguna. Data di bawah ini diambil secara otomatis dari GitHub.
+          <p className="text-[#5f695b] max-w-2xl mx-auto leading-relaxed">
+            Kumpulan *source code* dan repositori publik yang saya kembangkan. Data ditarik secara otomatis secara *real-time* dari GitHub.
           </p>
         </motion.div>
 
-        {/* Menampilkan teks loading saat data masih ditarik dari GitHub */}
+        {/* Loading State */}
         {isLoading ? (
-          <div className="text-center text-[#5f695b] py-10 font-medium">
-            <div className="animate-pulse">Menyelaraskan data dengan GitHub...</div>
+          <div className="text-center text-[#6f8f5f] py-10 font-medium flex justify-center items-center gap-3">
+            <span className="w-5 h-5 border-2 border-[#6f8f5f] border-t-transparent rounded-full animate-spin"></span>
+            Menyinkronkan data...
           </div>
         ) : (
+          
+          /* Grid Container Card */
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-7"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ staggerChildren: 0.18 }}
+            transition={{ staggerChildren: 0.15 }}
           >
             {projects.map((project, index) => (
               <motion.article
                 key={project.title + index}
-                className="relative rounded-2xl border border-[#d9d0c0] bg-[#fbf8f1] p-7 md:p-8 shadow-lg shadow-black/5 group transition-all duration-300 hover:-translate-y-1 hover:border-[#6f8f5f]/60"
+                // Penambahan flex-col dan justify-between agar tinggi card selalu sama
+                className="group relative flex flex-col justify-between h-full rounded-2xl border border-[#d9d0c0] bg-[#fbf8f1] p-6 md:p-8 shadow-sm hover:shadow-xl shadow-black/5 hover:-translate-y-1 hover:border-[#88a679]/50 transition-all duration-300 overflow-hidden"
                 variants={{
-                  hidden: { opacity: 0, y: 28 },
+                  hidden: { opacity: 0, y: 30 },
                   visible: { opacity: 1, y: 0 },
                 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-[#6f8f5f] via-[#88a679] to-transparent opacity-60 rounded-t-2xl" />
+                {/* Garis Aksen di Atas (Muncul saat di-hover) */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#6f8f5f] to-[#d9d0c0] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                <div className="flex items-start justify-between gap-4 mb-5">
-              <div>
-                {/* Mengubah Judul menjadi Link (Tautan) yang Mengarah ke GitHub */}
-                <a
-                  href={project.url} // Memanggil link URL dari data GitHub
-                  target="_blank" // Membuka link di tab/jendela baru
-                  rel="noopener noreferrer" // Praktik keamanan terbaik untuk target="_blank"
-                  className="inline-block group-hover:text-[#6f8f5f] transition-colors"
-                  title={`Lihat repositori ${project.title} di GitHub`} // Menambahkan keterangan saat kursor diarahkan (hover)
-                >
-                  <h3 className="text-2xl font-bold text-[#1f2a1e] flex items-center gap-2">
-                    <span className="capitalize">{project.title}</span>
-                    {/* Ikon panah kecil sebagai indikator link eksternal */}
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      viewBox="0 0 20 20" 
-                      fill="currentColor" 
-                      className="w-5 h-5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300"
-                    >
-                      <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clipRule="evenodd" />
-                    </svg>
-                  </h3>
-                </a>
-                <p className="text-sm font-medium text-[#6f8f5f] mt-1">
-                  {project.client}
-                </p>
-              </div>
-              <span className="shrink-0 text-xs font-semibold tracking-wide rounded-full px-3 py-1 bg-[#edf2e7] text-[#4f6f44] border border-[#d9d0c0]">
-                0{index + 1}
-              </span>
-            </div>
+                {/* Bagian Atas Card (Judul, Tipe, Nomor) */}
+                <div>
+                  <div className="flex items-start justify-between gap-4 mb-5">
+                    <div className="pr-4">
+                      <a 
+                        href={project.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 group/link"
+                        title={`Buka ${project.title} di GitHub`}
+                      >
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1f2a1e] group-hover/link:text-[#6f8f5f] transition-colors capitalize line-clamp-1">
+                          {project.title}
+                        </h3>
+                        {/* Ikon Tautan Eksternal */}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 text-[#88a679] opacity-0 -ml-2 group-hover/link:opacity-100 group-hover/link:ml-0 transition-all duration-300">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                        </svg>
+                      </a>
+                      <p className="text-xs font-semibold text-[#88a679] mt-1.5 uppercase tracking-widest">
+                        {project.client}
+                      </p>
+                    </div>
+                    {/* Nomor Urut */}
+                    <span className="shrink-0 text-xs font-bold font-mono tracking-wider w-9 h-9 flex items-center justify-center rounded-full bg-[#edf2e7] text-[#4f6f44] border border-[#d9d0c0]/50">
+                      0{index + 1}
+                    </span>
+                  </div>
+
+                  {/* Deskripsi Project (Dibatasi 3 baris agar rapi) */}
+                  <p className="text-[#5f695b] text-sm leading-relaxed mb-6 line-clamp-3">
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Bagian Bawah Card (Tech Stack & Statistik) */}
+                <div className="pt-5 border-t border-[#d9d0c0]/60 flex items-center justify-between gap-4 mt-auto">
+                  
+                  {/* Badge Bahasa Pemrograman */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border border-[#d9d0c0]/80 text-[#4b5a47] bg-[#f7f3eb]"
+                      >
+                        {/* Ornamen titik estetik */}
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#6f8f5f]"></span>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Info Star & Fork Github */}
+                  <div className="text-xs font-mono font-medium text-[#88a679] whitespace-nowrap bg-[#edf2e7] px-2 py-1 rounded-md">
+                    {project.highlight}
+                  </div>
+                </div>
+
               </motion.article>
             ))}
           </motion.div>
