@@ -53,7 +53,23 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.h1 transition={{ delay: 0.2 }} className="text-5xl md:text-6xl font-bold text-white leading-tight">
-            <span className="text-[#f59e0b]">Firmana Amri Subekhi</span>
+           <span className="relative inline-block text-[#f59e0b] pb-1 group">
+  Firmana Amri Subekhi
+  {/* Rel garis bawah transparan */}
+  <span className="absolute bottom-0 left-0 w-full h-[4px] bg-[#f59e0b]/20 rounded-full overflow-hidden">
+    {/* Cahaya laser yang bergerak mondar-mandir */}
+    <motion.span 
+      className="absolute top-0 left-0 h-full w-1/3 bg-[#f59e0b] rounded-full shadow-[0_0_8px_#f59e0b]"
+      animate={{ x: ["-100%", "300%"] }}
+      transition={{ 
+        duration: 2, 
+        repeat: Infinity, 
+        repeatType: "mirror", // Bikin gerakannya bolak-balik
+        ease: "linear" 
+      }}
+    />
+  </span>
+</span>
           </motion.h1>
           
           {/* 👇 BAGIAN ANIMASI TYPEWRITER 👇 */}
@@ -66,7 +82,7 @@ export default function HeroSection() {
         
 
           <motion.p transition={{ delay: 0.4 }} className="text-[#e7ebe5] max-w-lg leading-relaxed pt-2">
-            Saya merancang dan membangun solusi digital yang menggabungkan teknologi mutakhir dan implementasi yang rapi. Mari wujudkan ide Anda menjadi kenyataan.
+            Fresh Graduate lulusa Teknik Informatika dengan pengalaman magang sebagai web developer. Saya memiliki kemampuan dalam membangun aplikasi web fullstack menggunakan Laravel, MySQL, dan Tailwind CSS.
           </motion.p>
           
           <motion.div transition={{ delay: 0.5 }} className="flex flex-col gap-6 pt-4">

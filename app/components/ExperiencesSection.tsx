@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function ServicesSection() {
+export default function ExperiencesSection() {
   const services = [
     {
       title: "Praktek Kerja Nyata/Web Developer Intern",
@@ -26,7 +26,7 @@ export default function ServicesSection() {
 
   return (
     <section
-      id="services"
+      id="experience"
       className="bg-white w-full py-32 overflow-hidden relative"
     >
       <div className="container mx-auto px-6 lg:px-16">
@@ -38,12 +38,12 @@ export default function ServicesSection() {
           transition={{ duration: 0.8 }}
         >
           <p className="text-[#f59e0b] font-bold uppercase tracking-widest text-sm mb-4">
-            My Specialty
+            Welcome To
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1c4645] mb-6">
             My{" "}
             <span className="relative">
-              Experience
+              Experiences
               <svg
                 className="absolute -bottom-2 left-0 w-full"
                 viewBox="0 0 100 10"

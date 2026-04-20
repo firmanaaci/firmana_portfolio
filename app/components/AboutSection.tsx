@@ -95,7 +95,7 @@ export default function AboutSection() {
               <span className="text-[#f59e0b]">Firmana Amri Subekhi.</span>
             </h2>
             <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
-              Saya <b>Firmana Amri Subekhi</b>, seorang <i>Fullstack Developer</i> dari Indonesia. Fokus saya adalah membangun website responsif, arsitektur backend yang rapi, dan aplikasi web yang siap dipakai.
+              Saya <b>Firmana Amri Subekhi</b>, seorang <i>Fullstack Developer</i>. Fokus saya adalah membangun website responsif, arsitektur backend yang rapi, dan aplikasi web yang siap dipakai.
             </p>
           </div>
 

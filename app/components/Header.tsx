@@ -42,8 +42,8 @@ export default function Header() {
 
       {/* TENGAH: Navigasi Desktop (Lebar 1/3, posisi ditengah) */}
       <nav className="hidden md:flex w-1/3 justify-center gap-8 font-medium text-white/80 text-sm items-center">
-        <Link href="#services" className="hover:text-white transition-colors">
-          Services
+        <Link href="#experience" className="hover:text-white transition-colors">
+          Experiences
         </Link>
         <Link href="#about" className="hover:text-white transition-colors">
           About Me
@@ -95,8 +95,8 @@ export default function Header() {
           }
         `}
       >
-        <Link href="#services" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white font-medium transition-colors text-lg">
-          Services
+        <Link href="#experience" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white font-medium transition-colors text-lg">
+          Experiences
         </Link>
         <Link href="#about" onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white font-medium transition-colors text-lg">
           About Me
