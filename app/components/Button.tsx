@@ -19,13 +19,13 @@ export default function Button({
   let styles = "";
   if (type === "primary") {
     styles =
-      "bg-[#6f8f5f] text-[#f7f3eb] hover:bg-[#5d7d4c] shadow-lg shadow-[#6f8f5f]/20";
+      "bg-[#1c4645] text-[#ffffff] hover:bg-[#1c4645]/90 shadow-lg shadow-[#1c4645]/20";
   } else if (type === "outline") {
     styles =
-      "border border-[#6f8f5f] text-[#4f6f44] hover:bg-[#6f8f5f] hover:text-[#f7f3eb] bg-[#fbf8f1]";
+      "border border-[#1c4645] text-[#1c4645] hover:bg-[#1c4645] hover:text-[#ffffff] bg-[#ffffff]";
   } else {
     styles =
-      "bg-[#f1ebdf] text-[#1f2a1e] hover:bg-[#e6ddcc] border border-[#d7cebf]";
+      "bg-[#ffffff] text-[#1c4645] hover:bg-[#1c4645]/10 border border-[#1c4645]/20";
   }
 
   // Jika tombol ini adalah tombol Download, gunakan tag <a> biasa dengan atribut download

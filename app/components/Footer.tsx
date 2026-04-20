@@ -1,12 +1,12 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-[#d9d0c0] py-8 text-center text-[#6b7565] text-sm bg-[#f4efe4]">
+    <footer className="border-t border-white/10 py-8 text-center text-white/70 text-sm bg-[#1c4645]">
       <p>
         © {new Date().getFullYear()}{" "}
-        <span className="text-[#6f8f5f]">Firmana Amri Subekhi</span>. All rights
+        <span className="text-[#f59e0b] font-semibold">Firmana Amri Subekhi</span>. All rights
         reserved.
       </p>
-      <p className="mt-2 text-l text-[#7c8575]">
+      <p className="mt-2 text-white/50">
         Built With Next.JS &amp; Tailwind.CSS
       </p>
     </footer>

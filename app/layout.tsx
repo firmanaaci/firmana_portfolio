@@ -21,11 +21,22 @@ export const metadata: Metadata = {
   },
   description: SITE_CONFIG.description,
   keywords: SITE_CONFIG.keywords,
+  applicationName: SITE_CONFIG.siteName,
+  category: "portfolio",
+  classification: "Personal Portfolio",
   authors: [{ name: SITE_CONFIG.authorName, url: SITE_URL }],
   creator: SITE_CONFIG.authorName,
   publisher: SITE_CONFIG.authorName,
   alternates: {
     canonical: "/",
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: "/favicon.ico",
   },
   openGraph: {
     type: "website",
@@ -62,6 +73,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
+  other: {
+    "theme-color": "#1c4645",
   },
 };
 
