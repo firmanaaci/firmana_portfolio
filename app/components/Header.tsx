@@ -28,7 +28,7 @@ export default function Header() {
       animate={isHidden ? "hidden" : "visible"}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       // Background diubah menjadi Hijau Pekat
-      className="flex justify-between items-center px-8 py-6 bg-[#1c4645] sticky top-0 z-50 border-b border-white/10"
+      className="flex justify-between items-center px-8 py-6 bg-[#0d2221] sticky top-0 z-50 border-b border-white/10"
     >
       {/* KIRI: Logo (Lebar 1/3) */}
       <div className="w-1/3">

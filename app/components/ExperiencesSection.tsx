@@ -77,9 +77,9 @@ export default function ExperiencesSection() {
               }}
             >
               {/* Efek Cahaya Belakang (Glow) saat Hover */}
-              <div className="absolute -right-10 -top-10 w-32 h-32 bg-[#1c4645]/5 rounded-full blur-3xl group-hover:bg-[#f59e0b]/20 transition-all duration-500"></div>
+              <div className="absolute -right-10 -top-10 w-32 h-32 bg-[#1c4645]/5 rounded-full blur-3xl group-hover:bg-[#FEFD99] transition-all duration-500"></div>
 
-              <div className="w-16 h-16 bg-[#1c464592] text-white rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-xl shadow-[#1c4645]/20">
+              <div className="w-16 h-16 bg-[#1c464592] text-white rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-xl shadow-[#1c4645]/20">
                 {service.icon}
               </div>
 

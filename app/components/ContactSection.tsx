@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function ContactSection() {
   return (
-    <section id="kontak" className="relative w-full py-32 bg-[#1c4645] overflow-visible">
+    <section id="kontak" className="relative w-full py-32 bg-[#0d2221] overflow-visible">
       
       {/* LENGKUNGAN ATAS (CURVE UP) + STACKED SHADOW */}
       {/* Kita letakkan di 'bottom-full' agar dia muncul di atas blok hijau ini */}
@@ -23,7 +23,7 @@ export default function ContactSection() {
           }}
         >
           {/* Path ini menggambar lengkungan hijau yang menghadap ke atas */}
-          <path d="M0,120 C480,0 960,0 1440,120 Z" fill="#1c4645" />
+          <path d="M0,120 C480,0 960,0 1440,120 Z" fill="#0d2221" />
         </svg>
       </div>
 
@@ -38,12 +38,12 @@ export default function ContactSection() {
           <p className="text-[#f59e0b] font-bold uppercase tracking-widest text-sm mb-6">
             Get In Touch
           </p>
-          <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-8 leading-tight">
-            Siap untuk Memulai <br/>
-            <span className="text-[#f59e0b]">Proyek Berikutnya?</span>
-          </h2>
+          <h3 className="text-4xl md:text-5xl font-extrabold text-[#f59e0b] mb-8 leading-tight">
+            Tertarik untuk diskusi lebih lanjut? <br/>
+            <span className="text-white/80 text-3xl md:text-4xl font-bold block mt-2">Hubungi Saya</span>
+          </h3>
           <p className="text-white/70 mb-12 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Saya selalu terbuka untuk mendiskusikan peluang baru, kolaborasi kreatif, atau sekadar bertukar pikiran tentang solusi teknologi masa depan. Mari wujudkan ide Anda menjadi nyata.
+            Saya selalu terbuka untuk mendiskusikan proyek baru, ide kreatif, atau peluang kerja sama. 
           </p>
 
           <motion.a
