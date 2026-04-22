@@ -1,13 +1,12 @@
-/* ============================================================
-   Tambahkan ini ke globals.css kamu (Tailwind v4)
-   ============================================================ */
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
+/* =========================
+   THEME (Design System)
+========================= */
 @theme {
-  /* Fonts */
-  --font-syne: 'Syne', sans-serif;
-  --font-dm: 'DM Sans', sans-serif;
+  /* Fonts (dari next/font) */
+  --font-sans: var(--font-dm);
+  --font-display: var(--font-syne);
 
   /* Brand colors */
   --color-brand-dark:    #050d0c;
@@ -15,19 +14,31 @@
   --color-brand-amber:   #f59e0b;
   --color-brand-amber2:  #e07820;
 
-  /* Custom animations */
-  --animate-blink:      blink 1.5s ease-in-out infinite;
-  --animate-cursor:     blink 0.9s step-end infinite;
-  --animate-spin-ring:  spin-ring 30s linear infinite;
-  --animate-spin-ring-r: spin-ring 20s linear infinite reverse;
-  --animate-float:      floatUD 4s ease-in-out infinite;
-  --animate-float-d:    floatUD 4s ease-in-out 2s infinite;
-  --animate-pulse-dot:  pulse-dot 2s ease-in-out infinite;
+  /* Animations */
+  --animate-blink:        blink 1.5s ease-in-out infinite;
+  --animate-cursor:       blink 0.9s step-end infinite;
+  --animate-spin-ring:    spin-ring 30s linear infinite;
+  --animate-spin-ring-r:  spin-ring 20s linear infinite reverse;
+  --animate-float:        floatUD 4s ease-in-out infinite;
+  --animate-float-d:      floatUD 4s ease-in-out 2s infinite;
+  --animate-pulse-dot:    pulse-dot 2s ease-in-out infinite;
 }
 
+/* =========================
+   BASE STYLES
+========================= */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-brand-dark);
+  color: white;
+}
+
+/* =========================
+   KEYFRAMES
+========================= */
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0.2; }
+  50%      { opacity: 0.2; }
 }
 
 @keyframes spin-ring {
@@ -37,15 +48,19 @@
 
 @keyframes floatUD {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-10px); }
+  50%      { transform: translateY(-10px); }
 }
 
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.5; transform: scale(0.7); }
+  50%      { opacity: 0.5; transform: scale(0.7); }
 }
 
-/* Grid background pattern */
+/* =========================
+   UTILITIES
+========================= */
+
+/* Grid background */
 @utility bg-grid {
   background-image:
     linear-gradient(rgba(20,184,140,0.04) 1px, transparent 1px),
@@ -53,7 +68,7 @@
   background-size: 60px 60px;
 }
 
-/* Gradient text utility */
+/* Gradient text */
 @utility text-gradient-amber {
   background: linear-gradient(135deg, #f59e0b 0%, #f0c060 50%, #e07820 100%);
   -webkit-background-clip: text;
@@ -61,7 +76,7 @@
   background-clip: text;
 }
 
-/* Scroll progress bar gradient */
+/* Progress bar */
 @utility bg-gradient-progress {
   background: linear-gradient(90deg, #14b88c, #f59e0b);
 }

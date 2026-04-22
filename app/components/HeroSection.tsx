@@ -138,16 +138,12 @@ export default function HeroSection() {
               }}
             >
               Firmana Amri
-              <span
-                className="absolute -bottom-1 left-0 w-full h-[2px] rounded-full"
-                style={{
-                  background: "linear-gradient(90deg, #f59e0b, transparent)",
-                }}
-              />
             </span>
             <br />
             Subekhi
           </motion.h1>
+
+          
 
           {/* Typewriter */}
           <motion.div
@@ -156,7 +152,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.25 }}
           >
-            <span>Im a</span>
+            <span>I&apos;m a</span>
             <span className="font-[family-name:var(--font-syne)] font-semibold text-[#f59e0b]">
               {currentText}
             </span>
@@ -313,10 +309,8 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Floating tag — top left */}
-        
 
           {/* Floating tag — bottom right */}
-         
         </motion.div>
       </div>
 
