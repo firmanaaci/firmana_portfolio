@@ -71,7 +71,7 @@ export default function HeroSection() {
     },
     {
       icon: <FaInstagram />,
-      href: "https://instagram.com/@firmana_fir",
+      href: "https://instagram.com/firmana_fir",
       label: "Instagram",
     },
   ];
