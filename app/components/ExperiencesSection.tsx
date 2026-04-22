@@ -70,7 +70,7 @@ export default function ExperiencesSection() {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="group relative bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-gray-200/40 hover:border-[#1c4645]/20 transition-all duration-500 flex flex-col items-start text-left overflow-hidden"
+              className="group relative bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-gray-200/40 hover:border-[#0d2221] transition-all duration-500 flex flex-col items-start text-left overflow-hidden"
               variants={{
                 hidden: { opacity: 0, scale: 0.9 },
                 visible: { opacity: 1, scale: 1 },

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function ContactSection() {
   return (
-    <section id="kontak" className="relative w-full py-32 bg-[#0d2221] overflow-visible">
+    <section id="kontak" className="relative w-full py-32 bg-[#050d0c] overflow-visible">
       
       {/* LENGKUNGAN ATAS (CURVE UP) + STACKED SHADOW */}
       {/* Kita letakkan di 'bottom-full' agar dia muncul di atas blok hijau ini */}
@@ -23,7 +23,7 @@ export default function ContactSection() {
           }}
         >
           {/* Path ini menggambar lengkungan hijau yang menghadap ke atas */}
-          <path d="M0,120 C480,0 960,0 1440,120 Z" fill="#0d2221" />
+          <path d="M0,120 C480,0 960,0 1440,120 Z" fill="#050d0c" />
         </svg>
       </div>
 

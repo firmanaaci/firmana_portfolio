@@ -1,208 +1,338 @@
 "use client";
 
 import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 export default function HeroSection() {
-  // --- LOGIKA EFEK MENGETIK (TYPEWRITER) ---
   const titles = ["Fullstack Developer", "Web Developer", "Problem Analyst"];
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   const cvFileUrl = "/Resume_Firmana_Amri_Subekhi.pdf";
-
-  const openCvInWeb = () => {
+  const openCvInWeb = () =>
     window.open(cvFileUrl, "_blank", "noopener,noreferrer");
-  };
+
+  // Magnetic cursor effect
+  const orbRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 80, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 80, damping: 20 });
 
   useEffect(() => {
-    // Kecepatan ngetik (100ms) dan kecepatan hapus (50ms)
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!orbRef.current) return;
+      const rect = orbRef.current.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      mouseX.set((e.clientX - cx) * 0.08);
+      mouseY.set((e.clientY - cy) * 0.08);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // Typewriter
+  useEffect(() => {
     const typeSpeed = isDeleting ? 50 : 100;
     const currentTitle = titles[currentTitleIndex];
-
     const timer = setTimeout(() => {
       if (!isDeleting && currentText === currentTitle) {
-        // Kalau teks udah utuh, kasih jeda 2 detik sebelum mulai menghapus
         setTimeout(() => setIsDeleting(true), 2000);
       } else if (isDeleting && currentText === "") {
-        // Kalau teks udah habis terhapus, lanjut ke kata berikutnya
         setIsDeleting(false);
         setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
       } else {
-        // Proses ngetik atau menghapus huruf per huruf
         setCurrentText(
           currentTitle.substring(0, currentText.length + (isDeleting ? -1 : 1)),
         );
       }
     }, typeSpeed);
-
     return () => clearTimeout(timer);
   }, [currentText, isDeleting, currentTitleIndex]);
 
-  return (
-    <section className="bg-[#0d2221] w-full relative pt-12 pb-24 md:pb-36 z-10 overflow-visible">
-      <div className="container mx-auto px-6 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
-        {/* Bagian Kiri: Teks */}
-        <motion.div
-          className="flex-1 space-y-6"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <motion.div
-            transition={{ delay: 0.1 }}
-            className="flex items-center gap-2 text-[#f59e0b] text-sm font-bold"
-          >
-            <span>★★★★★</span>
-            <span className="text-white/80 font-normal">
-              (Based On Experience)
-            </span>
-          </motion.div>
+  const socialLinks = [
+    {
+      icon: <FaGithub />,
+      href: "https://github.com/firmanaamri",
+      label: "GitHub",
+    },
+    {
+      icon: <FaLinkedin />,
+      href: "https://linkedin.com/in/firmanaamri",
+      label: "LinkedIn",
+    },
+    {
+      icon: <FaWhatsapp />,
+      href: "https://wa.me/6282136162717?text=Halo%20Firmana%2C%20saya%20ingin%20bekerja%20sama%20dengan%20Anda.",
+      label: "WhatsApp",
+    },
+    {
+      icon: <FaInstagram />,
+      href: "https://instagram.com/@firmana_fir",
+      label: "Instagram",
+    },
+  ];
 
+  const stats = [{ num: "Pemalang", label: "Asal Saya" }];
+
+  return (
+    <section className="font-[family-name:var(--font-dm)] relative w-full min-h-screen overflow-hidden flex items-center bg-[#050d0c]">
+      <div
+        className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(20,184,140,0.12) 0%, transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute -bottom-[10%] right-[5%] w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(20,184,140,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(20,184,140,0.04) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      {/* Main grid */}
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] grid grid-cols-1 md:grid-cols-2 gap-15 px-6 lg:px-10 pt-[100px] pb-[120px] items-center">
+        {/* ── LEFT ── */}
+        <motion.div
+          className="flex flex-col text-center md:text-left"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 self-center md:self-start mb-7 bg-[rgba(20,184,140,0.08)] border border-[rgba(20,184,140,0.25)] rounded-full px-4 py-1.5 text-[11px] font-medium text-[#14b88c] uppercase tracking-[0.08em]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#14b88c] shadow-[0_0_8px_#14b88c] animate-[blink_1.5s_ease-in-out_infinite]" />
+            Available for work
+          </div>
+
+          {/* Name */}
           <motion.h1
-            transition={{ delay: 0.2 }}
-            className="text-5xl md:text-6xl font-bold text-white leading-tight"
+            className="font-[family-name:var(--font-syne)] text-[clamp(38px,5vw,64px)] font-extrabold text-[#f0faf8] leading-[1.05] tracking-[-0.02em] mb-1"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="relative inline-block text-[#f59e0b] pb-1 group">
-              Firmana Amri Subekhi
-              {/* Rel garis bawah transparan */}
-              <span className="absolute bottom-0 left-0 w-full h-[4px] bg-[#f59e0b]/20 rounded-full overflow-hidden">
-                {/* Cahaya laser yang bergerak mondar-mandir */}
-                <motion.span
-                  className="absolute top-0 left-0 h-full w-1/3 bg-[#f59e0b] rounded-full shadow-[0_0_8px_#f59e0b]"
-                  animate={{ x: ["-100%", "300%"] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: "mirror", // Bikin gerakannya bolak-balik
-                    ease: "linear",
-                  }}
-                />
-              </span>
+            <span
+              className="relative"
+              style={{
+                background:
+                  "linear-gradient(135deg, #f59e0b 0%, #f0c060 50%, #e07820 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Firmana Amri
+              <span
+                className="absolute -bottom-1 left-0 w-full h-[2px] rounded-full"
+                style={{
+                  background: "linear-gradient(90deg, #f59e0b, transparent)",
+                }}
+              />
             </span>
+            <br />
+            Subekhi
           </motion.h1>
 
-          {/* 👇 BAGIAN ANIMASI TYPEWRITER 👇 */}
-          <motion.h2
-            transition={{ delay: 0.3 }}
-            className="text-xl md:text-2xl text-white/90 font-medium h-8 flex items-center"
+          {/* Typewriter */}
+          <motion.div
+            className="flex items-center gap-2 flex-wrap justify-center md:justify-start mt-4 text-[clamp(16px,2vw,20px)] text-[rgba(240,250,248,0.55)] font-light"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.25 }}
           >
-            Saya seorang{" "}
-            <span className="text-[#f59e0b] font-bold ml-2">{currentText}</span>
-            {/* Efek Kursor Kedap-Kedip */}
-            <span className="inline-block w-[3px] h-[1.2em] bg-[#f59e0b] ml-1 animate-pulse"></span>
-          </motion.h2>
+            <span>Im a</span>
+            <span className="font-[family-name:var(--font-syne)] font-semibold text-[#f59e0b]">
+              {currentText}
+            </span>
+            <span className="inline-block w-[2px] h-[1em] bg-[#f59e0b] rounded-[1px] align-middle animate-[blink_0.9s_step-end_infinite]" />
+          </motion.div>
 
+          {/* Divider */}
+          <div
+            className="w-12 h-[2px] rounded-full my-5 self-center md:self-start"
+            style={{
+              background: "linear-gradient(90deg, #f59e0b, transparent)",
+            }}
+          />
+
+          {/* Description */}
           <motion.p
-            transition={{ delay: 0.4 }}
-            className="text-[#e7ebe5] max-w-lg leading-relaxed pt-2 text-justify"
+            className="text-[15px] text-[rgba(200,230,220,0.65)] leading-[1.8] max-w-[480px] mb-9 font-light mx-auto md:mx-0"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
           >
             Fresh Graduate Teknik Informatika dengan pengalaman magang sebagai
-            web developer. Saya memiliki kemampuan dalam membangun aplikasi web
-            fullstack menggunakan Laravel, MySQL, dan Tailwind CSS.
+            web developer. Memiliki kemampuan membangun aplikasi web fullstack
+            menggunakan Laravel, MySQL, dan Tailwind CSS.
           </motion.p>
 
+          {/* Buttons */}
           <motion.div
-            transition={{ delay: 0.5 }}
-            className="flex flex-col gap-6 pt-4"
+            className="flex flex-wrap gap-3 mb-9 justify-center md:justify-start"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
           >
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#kontak"
-                className="px-6 py-3 rounded-full font-bold transition-all duration-300 bg-[#f59e0b] text-white hover:bg-yellow-500 shadow-lg shadow-orange-500/30"
-              >
-                Contact Me ➔
-              </a>
-              <button
-                type="button"
-                onClick={openCvInWeb}
-                className="px-6 py-3 rounded-full font-bold transition-all duration-300 border-2 border-white/30 text-white hover:bg-white hover:text-[#1c4645]"
-              >
-                Download CV
-              </button>
-            </div>
+            <a
+              href="#kontak"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-[family-name:var(--font-syne)] font-bold text-[13px] tracking-[0.02em] text-[#0a0a0a] shadow-[0_4px_24px_rgba(245,158,11,0.25)] hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(245,158,11,0.38)] transition-all duration-[250ms] cursor-pointer"
+              style={{
+                background: "linear-gradient(135deg, #f59e0b, #e07820)",
+              }}
+            >
+              Contact Me
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M1 7h12M8 2l5 5-5 5"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
+            <button
+              type="button"
+              onClick={openCvInWeb}
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-[family-name:var(--font-syne)] font-semibold text-[13px] tracking-[0.02em] text-[#f0faf8] bg-transparent border border-[rgba(240,250,248,0.18)] hover:bg-[rgba(240,250,248,0.06)] hover:border-[rgba(240,250,248,0.35)] hover:-translate-y-0.5 transition-all duration-[250ms] cursor-pointer"
+            >
+              Download CV
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M7 1v8M3 9l4 4 4-4M1 13h12"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </motion.div>
 
-            <div className="flex items-center gap-6">
-              {/* Pastikan link ini sudah pakai username yang benar ya */}
+          {/* Social icons */}
+          <motion.div
+            className="flex items-center gap-1 justify-center md:justify-start"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.55 }}
+          >
+            {socialLinks.map(({ icon, href, label }) => (
               <a
-                href="https://github.com/firmanaamri"
+                key={label}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#dad9d9] hover:text-[#fcfcfc] transition-colors text-2xl"
+                aria-label={label}
+                className="flex items-center justify-center w-10 h-10 rounded-[8px] text-[18px] text-[rgba(200,230,220,0.5)] hover:bg-[rgba(20,184,140,0.1)] hover:text-[#14b88c] hover:-translate-y-0.5 transition-all duration-200"
               >
-                <FaGithub />
+                {icon}
               </a>
-              <a
-                href="https://linkedin.com/in/firmanaamri"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#e7ebe5] hover:text-[#3a99c86e] transition-colors text-2xl"
-              >
-                <FaLinkedin />
-              </a>
-              <a
-                href="https://wa.me/6282136162717?text=Halo%20Firmana%2C%20saya%20ingin%20bekerja%20sama%20dengan%20Anda."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#e7ebe5] hover:text-[#0a7a4f] transition-colors text-2xl"
-              >
-                <FaWhatsapp />
-              </a>
-              <a
-                href="https://instagram.com/@firmana_fir"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#e7ebe5] hover:text-[#ce2074] transition-colors text-2xl"
-              >
-                <FaInstagram />
-              </a>
-            </div>
+            ))}
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            className="flex gap-8 pt-9 mt-9 border-t border-white/[0.06] justify-center md:justify-start"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.65 }}
+          >
+            {stats.map(({ num, label }) => (
+              <div key={label} className="text-center md:text-left">
+                <div className="font-[family-name:var(--font-syne)] text-2xl font-extrabold text-[#f0faf8] leading-none">
+                  {num}
+                </div>
+                <div className="text-[11px] text-[rgba(200,230,220,0.4)] uppercase tracking-[0.08em] font-medium mt-1">
+                  {label}
+                </div>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
 
-        {/* Bagian Kanan: Gambar */}
+        {/* ── RIGHT ── */}
         <motion.div
-          className="flex-1 flex justify-center relative"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          className="flex justify-center items-center relative order-first md:order-last"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] bg-white/10 rounded-full flex items-center justify-center border-4 border-white/20 relative">
-            <div className="absolute top-10 left-10 text-[#f59e0b] text-3xl animate-pulse">
-              ✦
-            </div>
-            <div className="absolute bottom-20 right-10 text-white/50 text-2xl animate-pulse delay-75">
-              ✦
-            </div>
+          {/* Rotating ring outer */}
+          <motion.div
+            className="absolute w-[320px] h-[320px] md:w-[420px] md:h-[420px] rounded-full border border-dashed border-[rgba(20,184,140,0.2)]"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          >
+            <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#14b88c] shadow-[0_0_10px_#14b88c]" />
+          </motion.div>
 
+          {/* Rotating ring mid */}
+          <motion.div
+            className="absolute w-[270px] h-[270px] md:w-[360px] md:h-[360px] rounded-full border border-[rgba(245,158,11,0.12)]"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#f59e0b] shadow-[0_0_8px_#f59e0b]" />
+          </motion.div>
+
+          {/* Profile image */}
+          <motion.div
+            ref={orbRef}
+            style={{ x: springX, y: springY }}
+            className="relative z-10 w-[220px] h-[220px] md:w-[280px] md:h-[280px] rounded-full overflow-hidden border-[3px] border-[rgba(20,184,140,0.3)] shadow-[0_0_0_8px_rgba(20,184,140,0.06),0_0_60px_rgba(20,184,140,0.15),0_30px_80px_rgba(0,0,0,0.5)]"
+          >
             <img
               src="/saya.jpeg"
-              alt="Foto Profil"
-              className="w-[90%] h-[90%] object-cover rounded-full"
+              alt="Foto Profil Firmana"
+              className="w-full h-full object-cover block"
             />
-          </div>
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(160deg, rgba(20,184,140,0.12) 0%, transparent 50%)",
+              }}
+            />
+          </motion.div>
+
+          {/* Floating tag — top left */}
+        
+
+          {/* Floating tag — bottom right */}
+         
         </motion.div>
       </div>
 
-      {/* LENGKUNGAN BAWAH HIJAU MENGGANTUNG + SHADOW BERTUMPUK (STACKED) */}
-      <div className="absolute top-full left-0 w-full leading-none z-10 ">
+      {/* Bottom wave */}
+      <div className="absolute bottom-0 left-0 w-full leading-none z-10 pointer-events-none">
         <svg
-          viewBox="0 0 1440 120"
-          className="w-full block h-[40px] md:h-[120px] overflow-visible"
+          viewBox="0 0 1440 80"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
-          style={{
-            filter: `
-              drop-shadow(0px 8px 6px rgba(0, 0, 0, 0.12)) 
-              drop-shadow(0px 22px 18px rgba(0, 0, 0, 0.08)) 
-              drop-shadow(0px 40px 35px rgba(0, 0, 0, 0.04))
-            `,
-          }}
+          className="w-full block h-[80px]"
         >
-          <path d="M0,0 C480,120 960,120 1440,0 Z" fill="#0d2221" />
+          <path
+            d="M0 80V40C240 0 480 80 720 40C960 0 1200 80 1440 40V80H0Z"
+            fill="#050d0c"
+          />
         </svg>
       </div>
     </section>

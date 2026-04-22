@@ -64,7 +64,7 @@ export default function AboutSection() {
     <section
       id="about"
       className="relative w-full overflow-hidden"
-      style={{ background: "#0d2221", color: "#f0ede6", fontFamily: "'DM Sans', sans-serif" }}
+      style={{ background: "#050d0c", color: "#f0ede6", fontFamily: "'DM Sans', sans-serif" }}
     >
       {/* Font import — move to _document.tsx / layout.tsx if preferred */}
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap');`}</style>
@@ -94,7 +94,7 @@ export default function AboutSection() {
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
           <div className="relative w-full h-[480px] lg:h-full min-h-[480px] group"
-            style={{ background: "#1c4645" }}>
+            style={{ background: "#050d0c" }}>
 
             {/* ✦ Sparkle stars — same as hero */}
             <motion.span className="absolute top-[60px] right-[80px] text-2xl z-20 pointer-events-none"
@@ -123,10 +123,10 @@ export default function AboutSection() {
 
             {/* Right fade into dark bg (desktop) */}
             <div className="absolute inset-0 hidden lg:block pointer-events-none"
-              style={{ background: "linear-gradient(to right, transparent 50%, #0d2221 100%)" }} />
+              style={{ background: "linear-gradient(to right, transparent 50%, #050d0c 100%)" }} />
             {/* Bottom fade (mobile) */}
             <div className="absolute bottom-0 left-0 right-0 h-2/5 pointer-events-none lg:hidden"
-              style={{ background: "linear-gradient(to top, #0d2221, transparent)" }} />
+              style={{ background: "linear-gradient(to top, #050d0c, transparent)" }} />
 
             {/* Available badge */}
             <div className="absolute top-7 left-6 flex items-center gap-2 px-4 py-2 rounded-full z-20"
