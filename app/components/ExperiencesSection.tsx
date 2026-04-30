@@ -37,7 +37,7 @@ export default function ExperiencesSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-[#f59e0b] font-bold uppercase tracking-widest text-sm mb-4">
+          <p className="text-brand-amber font-bold uppercase tracking-widest text-sm mb-4">
             Welcome To
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1c4645] mb-6">
@@ -83,7 +83,7 @@ export default function ExperiencesSection() {
                 {service.icon}
               </div>
 
-              <h3 className="text-2xl font-bold text-[#1c4645] mb-4 group-hover:text-[#f59e0b] transition-colors">
+              <h3 className="text-2xl font-bold text-[#1c4645] mb-4 group-hover:text-brand-amber transition-colors">
                 {service.title}
               </h3>
 

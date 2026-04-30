@@ -91,7 +91,7 @@ export default function ProjectSection() {
     >
       {/* Ornamen Latar Belakang */}
       <div className="absolute top-40 left-0 w-72 h-72 bg-[#1c4645]/5 rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-40 right-0 w-96 h-96 bg-[#f59e0b]/5 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-40 right-0 w-96 h-96 bg-brand-amber/5 rounded-full blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 lg:px-16 relative z-10">
         
@@ -103,7 +103,7 @@ export default function ProjectSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-[#f59e0b] font-bold uppercase tracking-widest text-sm mb-4">
+          <p className="text-brand-amber font-bold uppercase tracking-widest text-sm mb-4">
             Showcase
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1c4645] mb-6">
@@ -122,7 +122,7 @@ export default function ProjectSection() {
         {/* Loading State */}
         {isLoading ? (
           <div className="text-center text-[#1c4645] py-10 font-medium flex justify-center items-center gap-3">
-            <span className="w-6 h-6 border-4 border-[#1c4645]/30 border-t-[#f59e0b] rounded-full animate-spin"></span>
+            <span className="w-6 h-6 border-4 border-[#1c4645]/30 border-t-brand-amber rounded-full animate-spin"></span>
             Menyinkronkan data GitHub...
           </div>
         ) : (
@@ -149,7 +149,7 @@ export default function ProjectSection() {
                 </div>
 
                 {/* Garis Aksen Vertikal (Muncul saat hover) */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-0 bg-[#f59e0b] group-hover:h-1/2 transition-all duration-500 ease-out rounded-r-full z-20"></div>
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-0 bg-brand-amber group-hover:h-1/2 transition-all duration-500 ease-out rounded-r-full z-20"></div>
 
                 {/* Konten Atas */}
                 <div className="relative z-10">
@@ -162,7 +162,7 @@ export default function ProjectSection() {
                         className="inline-flex items-center gap-2 group/link"
                         title={`Buka ${project.title} di GitHub`}
                       >
-                        <h3 className="text-2xl md:text-3xl font-extrabold text-[#1c4645] group-hover/link:text-[#f59e0b] transition-colors capitalize line-clamp-1">
+                        <h3 className="text-2xl md:text-3xl font-extrabold text-[#1c4645] group-hover/link:text-brand-amber transition-colors capitalize line-clamp-1">
                           {project.title}
                         </h3>
                         <svg
@@ -171,7 +171,7 @@ export default function ProjectSection() {
                           viewBox="0 0 24 24"
                           strokeWidth={3}
                           stroke="currentColor"
-                          className="w-5 h-5 text-[#f59e0b] opacity-0 -ml-3 group-hover/link:opacity-100 group-hover/link:ml-0 transition-all duration-300"
+                          className="w-5 h-5 text-brand-amber opacity-0 -ml-3 group-hover/link:opacity-100 group-hover/link:ml-0 transition-all duration-300"
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                         </svg>
@@ -195,13 +195,13 @@ export default function ProjectSection() {
                         key={tech}
                         className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#1c4645]/5 text-[#1c4645] group-hover:bg-[#1c4645] group-hover:text-white transition-colors duration-300"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-amber"></span>
                         {tech}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#1c4645] bg-gray-50 px-3 py-2 rounded-xl border border-gray-100 group-hover:border-[#1c4645]/20 transition-colors">
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#1c4645] bg-gray-50 px-3 py-2 rounded-xl border border-gray-100 group-hover:border-brand-amber/20 transition-colors">
                     {project.highlight}
                   </div>
                 </div>

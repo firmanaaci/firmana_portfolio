@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 
 export default function ContactSection() {
   return (
-    <section id="kontak" className="relative w-full py-32 bg-[#050d0c] overflow-visible">
+    <section id="kontak" className="relative w-full py-32 bg-brand-dark overflow-visible">
       
       {/* LENGKUNGAN ATAS (CURVE UP) + STACKED SHADOW */}
       {/* Kita letakkan di 'bottom-full' agar dia muncul di atas blok hijau ini */}
       <div className="absolute bottom-full left-0 w-full leading-none z-20 pointer-events-none">
         <svg 
           viewBox="0 0 1440 120" 
-          className="w-full block h-[40px] md:h-[100px] overflow-visible" 
+          className="w-full block h-10 md:h-25 overflow-visible" 
           preserveAspectRatio="none"
           style={{
             // Bayangan bertumpuk diarahkan ke atas (nilai Y minus)
@@ -35,10 +35,10 @@ export default function ContactSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <p className="text-[#f59e0b] font-bold uppercase tracking-widest text-sm mb-6">
+          <p className="text-brand-amber font-bold uppercase tracking-widest text-sm mb-6">
             Get In Touch
           </p>
-          <h3 className="text-4xl md:text-5xl font-extrabold text-[#f59e0b] mb-8 leading-tight">
+          <h3 className="text-4xl md:text-5xl font-extrabold text-brand-amber mb-8 leading-tight">
             Tertarik untuk diskusi lebih lanjut? <br/>
             <span className="text-white/80 text-3xl md:text-4xl font-bold block mt-2">Hubungi Saya</span>
           </h3>
@@ -48,7 +48,7 @@ export default function ContactSection() {
 
           <motion.a
             href="mailto:firmanaamri@gmail.com"
-            className="inline-flex items-center gap-4 px-10 py-5 bg-[#f59e0b] text-white text-lg font-bold rounded-full hover:bg-yellow-500 transition-all shadow-xl shadow-black/30"
+            className="inline-flex items-center gap-4 px-10 py-5 bg-brand-amber text-white text-lg font-bold rounded-full hover:bg-yellow-500 transition-all shadow-xl shadow-black/30"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

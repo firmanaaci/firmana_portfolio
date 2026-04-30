@@ -13,7 +13,7 @@ export default function AboutSection() {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   const skills = [
     {
@@ -70,9 +70,9 @@ export default function AboutSection() {
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap');`}</style>
 
       {/* Radial teal glows — matches hero section atmosphere */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full pointer-events-none z-0"
+      <div className="absolute top-0 left-0 w-150 h-150 rounded-full pointer-events-none z-0"
         style={{ background: "radial-gradient(ellipse, rgba(28,70,69,0.6) 0%, transparent 70%)", transform: "translate(-30%, -30%)" }} />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none z-0"
+      <div className="absolute bottom-0 right-0 w-125 h-125 rounded-full pointer-events-none z-0"
         style={{ background: "radial-gradient(ellipse, rgba(28,70,69,0.4) 0%, transparent 70%)", transform: "translate(20%, 20%)" }} />
 
       {/* Gold accent line — same as hero top border */}
@@ -93,15 +93,15 @@ export default function AboutSection() {
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          <div className="relative w-full h-[480px] lg:h-full min-h-[480px] group"
+          <div className="relative w-full h-120 lg:h-full min-h-120 group"
             style={{ background: "#050d0c" }}>
 
             {/* ✦ Sparkle stars — same as hero */}
-            <motion.span className="absolute top-[60px] right-[80px] text-2xl z-20 pointer-events-none"
+            <motion.span className="absolute top-15 right-20 text-2xl z-20 pointer-events-none"
               style={{ color: "#f59e0b" }}
               animate={{ opacity: [1, 0.3, 1], scale: [1, 0.6, 1] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>✦</motion.span>
-            <motion.span className="absolute bottom-[80px] right-[40px] text-xl z-20 pointer-events-none"
+            <motion.span className="absolute bottom-20 right-10 text-xl z-20 pointer-events-none"
               style={{ color: "#f59e0b" }}
               animate={{ opacity: [1, 0.3, 1], scale: [1, 0.6, 1] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}>✦</motion.span>
@@ -142,7 +142,7 @@ export default function AboutSection() {
             <div className="absolute bottom-7 left-6 flex gap-1.5 items-center z-20">
               {images.map((_, i) => (
                 <button key={i} onClick={() => setCurrentIndex(i)}
-                  className="h-[2px] rounded-full transition-all duration-300 border-none outline-none p-0"
+                  className="h-0.5 rounded-full transition-all duration-300 border-none outline-none p-0"
                   style={{
                     width: i === currentIndex ? "36px" : "18px",
                     background: i === currentIndex ? "#f59e0b" : "rgba(245,158,11,0.3)",
@@ -181,7 +181,7 @@ export default function AboutSection() {
           </div>
 
           {/* Bio text */}
-          <p className="text-base leading-[1.85] font-light max-w-[400px] text-justify"  style={{ color: "#8fa8a7" }}>
+          <p className="text-base leading-[1.85] font-light max-w-100 text-justify"  style={{ color: "#8fa8a7" }}>
             Saya <strong style={{ color: "#f0ede6", fontWeight: 500 }}>Firmana Amri Subekhi</strong>,
             seorang <strong style={{ color: "#f0ede6", fontWeight: 500 }}>Fullstack Developer</strong>{" "}
             yang fokus membangun pengalaman digital yang fungsional dan menarik. Dengan latar belakang yang kuat di{" "}
@@ -207,7 +207,7 @@ export default function AboutSection() {
                   (e.currentTarget as HTMLDivElement).style.background = "rgba(28,70,69,0.15)";
                 }}
               >
-                <div className="w-[38px] h-[38px] rounded-[10px] flex items-center justify-center mb-3"
+                <div className="w-9.5 h-9.5 rounded-[10px] flex items-center justify-center mb-3"
                   style={{ background: s.iconBg }}>{s.icon}</div>
                 <p className="text-[13.5px] font-medium mb-1.5 tracking-[0.02em]"
                   style={{ color: "#f0ede6" }}>{s.title}</p>
@@ -218,7 +218,7 @@ export default function AboutSection() {
 
           {/* Bottom: stats + CTA */}
           <div className="flex items-center justify-between">
-           
+
 
             
           </div>
