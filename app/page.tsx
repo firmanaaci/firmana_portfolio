@@ -5,6 +5,7 @@ import AboutSection from "./components/AboutSection";
 import ProjectSection from "./components/ProjectSection";
 import SkillsSection from "./components/SkillsSection";
 import ContactSection from "./components/ContactSection";
+import LoadingScreen from "./components/LoadingScreen";
 import Footer from "./components/Footer";
 import { SITE_CONFIG, SITE_URL } from "./lib/site";
 
