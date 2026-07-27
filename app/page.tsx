@@ -3,6 +3,7 @@ import HeroSection from "./components/HeroSection";
 import ServicesSection from "./components/ExperiencesSection";
 import AboutSection from "./components/AboutSection";
 import ProjectSection from "./components/ProjectSection";
+import SkillsSection from "./components/SkillsSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import { SITE_CONFIG, SITE_URL } from "./lib/site";
@@ -57,6 +58,7 @@ export default function Home() {
 
           <ServicesSection />
           <AboutSection />
+          <SkillsSection />
           <ProjectSection />
           <ContactSection />
         </div>

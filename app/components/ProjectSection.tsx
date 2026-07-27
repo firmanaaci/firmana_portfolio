@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
-type GitHubProject = {
+type FeaturedShowcaseProject = {
   title: string;
+  repoName: string;
   client: string;
   description: string;
   techStack: string[];
@@ -12,76 +14,66 @@ type GitHubProject = {
   url: string;
 };
 
-type GitHubRepoResponse = {
-  name: string;
-  visibility: string;
-  description: string | null;
-  language: string | null;
-  stargazers_count: number;
-  forks_count: number;
-  html_url: string;
-};
+// 2 Proyek utama dari halaman Projects yang ditampilkan di Halaman Utama
+const INITIAL_FEATURED: FeaturedShowcaseProject[] = [
+  {
+    title: "Resume ATS Maker",
+    repoName: "ResumeATSMaker",
+    client: "Public Repository",
+    description:
+      "Aplikasi berbasis AI yang membantu membuat resume teroptimasi agar lolos sistem ATS (Applicant Tracking System) secara otomatis menggunakan model AI Groq.",
+    techStack: ["Laravel", "PHP", "Groq AI"],
+    highlight: "⭐ 0 | 🍴 0",
+    url: "https://github.com/firmanaamri/ResumeATSMaker",
+  },
+  {
+    title: "Toko Bangunan",
+    repoName: "TokoBangunan",
+    client: "Public Repository",
+    description:
+      "Sistem Manajemen Inventaris berbasis web untuk pencatatan stok barang, transaksi penjualan, dan pelaporan toko bangunan secara digital.",
+    techStack: ["PHP", "MySQL", "Bootstrap"],
+    highlight: "⭐ 0 | 🍴 0",
+    url: "https://github.com/firmanaamri/TokoBangunan",
+  },
+];
 
 export default function ProjectSection() {
-  const [projects, setProjects] = useState<GitHubProject[]>([]);
+  const [projects, setProjects] = useState<FeaturedShowcaseProject[]>(INITIAL_FEATURED);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // ⚠️ Memakai username GitHub kamu
     const githubUsername = "firmanaamri";
 
-    fetch(
-      `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=4`,
-    )
+    fetch(`https://api.github.com/users/${githubUsername}/repos?per_page=100`)
       .then((res) => res.json())
       .then((data) => {
         if (!Array.isArray(data)) {
-          console.warn("Limit API GitHub tercapai. Menggunakan data cadangan.");
-          setProjects([
-            {
-              title: "Toko Bangunan",
-              client: "Public Repository",
-              description:
-                "Sistem Manajemen Inventaris untuk pencatatan stok barang, transaksi, dan pelaporan.",
-              techStack: ["PHP"],
-              highlight: "⭐ 0 | 🍴 0",
-              url: "#",
-            },
-            {
-              title: "Booking Kos",
-              client: "Public Repository",
-              description:
-                "Aplikasi pemesanan kamar kos berbasis web dengan fitur pencarian dan filter lokasi.",
-              techStack: ["JavaScript"],
-              highlight: "⭐ 0 | 🍴 0",
-              url: "#",
-            },
-          ]);
           setIsLoading(false);
           return;
         }
 
-        const formattedProjects = data.map((repo: GitHubRepoResponse) => ({
-          title: repo.name.replace(/-/g, " ").replace(/_/g, " "),
-          client:
-            repo.visibility === "public"
-              ? "Public Repository"
-              : "Private Repository",
-          description:
-            repo.description ||
-            "Eksplorasi kode dan arsitektur perangkat lunak. Repositori ini tidak memiliki deskripsi spesifik.",
-          techStack: repo.language ? [repo.language] : ["Code"],
-          highlight: `⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}`,
-          url: repo.html_url,
-        }));
+        // Cari repo yang sesuai dengan 2 proyek utama
+        const updatedProjects = INITIAL_FEATURED.map((item) => {
+          const match = data.find(
+            (repo: { name: string; stargazers_count: number; forks_count: number; html_url: string }) =>
+              repo.name.toLowerCase() === item.repoName.toLowerCase()
+          );
 
-        setProjects(formattedProjects);
+          if (match) {
+            return {
+              ...item,
+              highlight: `⭐ ${match.stargazers_count} | 🍴 ${match.forks_count}`,
+              url: match.html_url || item.url,
+            };
+          }
+          return item;
+        });
+
+        setProjects(updatedProjects);
         setIsLoading(false);
       })
-      .catch((error) => {
-        console.error("Gagal mengambil data GitHub:", error);
-        setIsLoading(false);
-      });
+      .catch(() => setIsLoading(false));
   }, []);
 
   return (
@@ -89,13 +81,11 @@ export default function ProjectSection() {
       id="projects"
       className="relative w-full py-32 overflow-hidden bg-white"
     >
-      {/* Ornamen Latar Belakang */}
-      <div className="absolute top-40 left-0 w-72 h-72 bg-[#1c4645]/5 rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-40 right-0 w-96 h-96 bg-brand-amber/5 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute top-40 left-0 w-72 h-72 bg-[#1c4645]/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-40 right-0 w-96 h-96 bg-brand-amber/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-6 lg:px-16 relative z-10">
-        
-        {/* Header Section */}
+        {/* Header */}
         <motion.div
           className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
@@ -107,32 +97,41 @@ export default function ProjectSection() {
             Showcase
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1c4645] mb-6">
-            Proyek <span className="relative">
-              Saya
-              <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 10" preserveAspectRatio="none">
-                <path d="M0 5 Q 50 10 100 5" stroke="#f59e0b" strokeWidth="4" fill="transparent" />
+            Proyek{" "}
+            <span className="relative">
+              Unggulan
+              <svg
+                className="absolute -bottom-2 left-0 w-full"
+                viewBox="0 0 100 10"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M0 5 Q 50 10 100 5"
+                  stroke="#f59e0b"
+                  strokeWidth="4"
+                  fill="transparent"
+                />
               </svg>
             </span>
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
-            Kumpulan proyek web, <i>source code</i>, dan eksperimen teknologi yang saya kembangkan sebagai <i>Fullstack Developer</i>. Data ini diambil secara <i>real-time</i> langsung dari GitHub.
+            Dua proyek pilihan utama saya. Lihat koleksi proyek lengkap di halaman khusus proyek.
           </p>
         </motion.div>
 
-        {/* Loading State */}
+        {/* Loading / Cards */}
         {isLoading ? (
           <div className="text-center text-[#1c4645] py-10 font-medium flex justify-center items-center gap-3">
-            <span className="w-6 h-6 border-4 border-[#1c4645]/30 border-t-brand-amber rounded-full animate-spin"></span>
-            Menyinkronkan data GitHub...
+            <span className="w-6 h-6 border-4 border-[#1c4645]/30 border-t-brand-amber rounded-full animate-spin" />
+            Memuat proyek...
           </div>
         ) : (
-          /* Grid Container Card */
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            transition={{ staggerChildren: 0.2 }}
+            variants={{ visible: { transition: { staggerChildren: 0.2 } } }}
           >
             {projects.map((project, index) => (
               <motion.article
@@ -143,15 +142,11 @@ export default function ProjectSection() {
                   visible: { opacity: 1, y: 0 },
                 }}
               >
-                {/* Watermark Angka Raksasa di Background */}
                 <div className="absolute -top-10 -right-6 text-[150px] font-black text-gray-50 group-hover:text-[#1c4645]/3 transition-colors duration-500 z-0 pointer-events-none select-none leading-none">
                   0{index + 1}
                 </div>
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-0 bg-brand-amber group-hover:h-1/2 transition-all duration-500 ease-out rounded-r-full z-20" />
 
-                {/* Garis Aksen Vertikal (Muncul saat hover) */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-0 bg-brand-amber group-hover:h-1/2 transition-all duration-500 ease-out rounded-r-full z-20"></div>
-
-                {/* Konten Atas */}
                 <div className="relative z-10">
                   <div className="flex items-start justify-between gap-4 mb-6">
                     <div className="pr-4">
@@ -160,7 +155,6 @@ export default function ProjectSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 group/link"
-                        title={`Buka ${project.title} di GitHub`}
                       >
                         <h3 className="text-2xl md:text-3xl font-extrabold text-[#1c4645] group-hover/link:text-brand-amber transition-colors capitalize line-clamp-1">
                           {project.title}
@@ -173,7 +167,11 @@ export default function ProjectSection() {
                           stroke="currentColor"
                           className="w-5 h-5 text-brand-amber opacity-0 -ml-3 group-hover/link:opacity-100 group-hover/link:ml-0 transition-all duration-300"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                          />
                         </svg>
                       </a>
                       <p className="text-xs font-bold text-[#1c4645]/50 mt-2 uppercase tracking-widest">
@@ -181,13 +179,11 @@ export default function ProjectSection() {
                       </p>
                     </div>
                   </div>
-
                   <p className="text-gray-500 text-base leading-relaxed mb-8 line-clamp-3">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Konten Bawah (Tech Stack & Statistik) */}
                 <div className="relative z-10 pt-6 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 mt-auto">
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (
@@ -195,12 +191,11 @@ export default function ProjectSection() {
                         key={tech}
                         className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#1c4645]/5 text-[#1c4645] group-hover:bg-[#1c4645] group-hover:text-white transition-colors duration-300"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-amber"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-amber" />
                         {tech}
                       </span>
                     ))}
                   </div>
-
                   <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#1c4645] bg-gray-50 px-3 py-2 rounded-xl border border-gray-100 group-hover:border-brand-amber/20 transition-colors">
                     {project.highlight}
                   </div>
@@ -209,6 +204,36 @@ export default function ProjectSection() {
             ))}
           </motion.div>
         )}
+
+        {/* CTA */}
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold no-underline transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
+            style={{
+              background: "linear-gradient(135deg, #1c4645, #0d2221)",
+              color: "#f0ede6",
+              border: "1px solid rgba(28,70,69,0.4)",
+            }}
+          >
+            Lihat Semua Proyek
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M1 7h12M8 3l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

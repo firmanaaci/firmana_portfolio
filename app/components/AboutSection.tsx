@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 export default function AboutSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const images = ["/candid.jpeg", "/POTO.jpeg", "/firman.jpeg"];
+  const images = ["/candid.jpeg", "/POTO.jpeg", "/Firmana.png"];
 
   useEffect(() => {
     const timer = setInterval(() => {

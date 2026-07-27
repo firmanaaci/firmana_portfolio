@@ -294,12 +294,12 @@ export default function HeroSection() {
             className="relative z-10 w-55 h-55 md:w-70 md:h-70 rounded-full overflow-hidden border-[3px] border-[rgba(20,184,140,0.3)] shadow-[0_0_0_8px_rgba(20,184,140,0.06),0_0_60px_rgba(20,184,140,0.15),0_30px_80px_rgba(0,0,0,0.5)]"
           >
             <Image
-              src="/saya.jpeg"
+              src="/formal.png"
               alt="Foto Profil Firmana"
               width={280}
               height={280}
               loading="eager"
-              className="w-full h-full object-cover block"
+              className="w-full h-full object-cover object-top block"
             />
             <div
               className="absolute inset-0 pointer-events-none"
