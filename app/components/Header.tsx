@@ -16,6 +16,7 @@ const navLinks = [
   { label: "About", href: "/#about", id: "about" },
   { label: "Skills", href: "/#skills", id: "skills" },
   { label: "Projects", href: "/#projects", id: "projects" },
+  { label: "Contact", href: "/#kontak", id: "kontak" },
 ];
 
 export default function Header() {
@@ -36,7 +37,7 @@ export default function Header() {
       return;
     }
 
-    const sections = ["experience", "about", "skills", "projects"];
+    const sections = ["experience", "about", "skills", "projects", "kontak"];
 
     const handleScroll = () => {
       const firstSection = document.getElementById("experience");

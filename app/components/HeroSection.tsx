@@ -10,7 +10,7 @@ export default function HeroSection() {
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const cvFileUrl = "/FirmanaAmriSubekhi_Resume.pdf";
+  const cvFileUrl = "/FirmanaAmriSubekhi_Resume_ID.pdf";
   const openCvInWeb = () =>
     window.open(cvFileUrl, "_blank", "noopener,noreferrer");
 
