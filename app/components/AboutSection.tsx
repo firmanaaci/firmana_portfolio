@@ -64,10 +64,8 @@ export default function AboutSection() {
     <section
       id="about"
       className="relative w-full overflow-hidden"
-      style={{ background: "#050d0c", color: "#f0ede6", fontFamily: "'DM Sans', sans-serif" }}
+      style={{ background: "#050d0c", color: "#f0ede6", fontFamily: "var(--font-dm), sans-serif" }}
     >
-      {/* Font import — move to _document.tsx / layout.tsx if preferred */}
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap');`}</style>
 
       {/* Radial teal glows — matches hero section atmosphere */}
       <div className="absolute top-0 left-0 w-150 h-150 rounded-full pointer-events-none z-0"
@@ -170,7 +168,7 @@ export default function AboutSection() {
           {/* Heading */}
           <div>
             <h2 className="leading-[1.05] mb-3"
-              style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(38px, 4.5vw, 52px)", fontWeight: 900, color: "#f0ede6" }}>
+              style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif", fontSize: "clamp(38px, 4.5vw, 52px)", fontWeight: 900, color: "#f0ede6" }}>
               Firmana<br />
               <span style={{ color: "#f59e0b", fontStyle: "italic" }}>Amri Subekhi.</span>
             </h2>

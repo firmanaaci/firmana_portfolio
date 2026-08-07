@@ -106,8 +106,6 @@ export default function SkillsSection() {
       className="relative w-full overflow-hidden py-32"
       style={{ background: "#050d0c", color: "#f0ede6" }}
     >
-      {/* Playfair Display font (already imported in AboutSection, safe to repeat) */}
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,700&display=swap');`}</style>
 
       {/* Ambient glows */}
       <div
@@ -144,7 +142,7 @@ export default function SkillsSection() {
           </div>
           <h2
             className="leading-tight mb-4"
-            style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(36px, 4.5vw, 54px)", fontWeight: 900 }}
+            style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif", fontSize: "clamp(36px, 4.5vw, 54px)", fontWeight: 900 }}
           >
             My{" "}
             <span style={{ color: "#f59e0b", fontStyle: "italic" }}>Technical</span>{" "}

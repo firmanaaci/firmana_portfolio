@@ -80,9 +80,7 @@ export default function ProjectsPageClient() {
   return (
     <section
       className="relative min-h-screen w-full overflow-hidden py-20 px-6 lg:px-16"
-      style={{ background: "#050d0c", color: "#f0ede6" }}
     >
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,700&display=swap');`}</style>
 
       {/* Glows */}
       <div className="pointer-events-none absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full"
@@ -125,7 +123,7 @@ export default function ProjectsPageClient() {
           <h1
             className="mb-3 leading-tight"
             style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "var(--font-playfair), 'Playfair Display', serif",
               fontSize: "clamp(32px, 5vw, 56px)",
               fontWeight: 900,
             }}

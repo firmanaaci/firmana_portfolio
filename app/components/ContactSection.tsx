@@ -95,7 +95,7 @@ const itemVariants = {
 
 export default function ContactSection() {
   return (
-    <section id="kontak" className="relative w-full py-32 bg-brand-dark overflow-x-hidden overflow-y-visible">
+    <section id="kontak" className="relative w-full py-32 bg-brand-dark overflow-hidden">
       {/* LENGKUNGAN ATAS (CURVE UP) + STACKED SHADOW */}
       <div className="absolute bottom-full left-0 w-full leading-none z-20 pointer-events-none">
         <svg
@@ -153,7 +153,7 @@ export default function ContactSection() {
           <h2
             className="leading-tight mb-4"
             style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "var(--font-playfair), 'Playfair Display', serif",
               fontSize: "clamp(36px, 4.5vw, 54px)",
               fontWeight: 900,
               color: "#f0ede6",
@@ -216,7 +216,7 @@ export default function ContactSection() {
                   <div className="flex items-center gap-3 mb-2 flex-wrap">
                     <h3
                       className="text-2xl font-extrabold"
-                      style={{ color: "#f0ede6", fontFamily: "'Playfair Display', serif" }}
+                      style={{ color: "#f0ede6", fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
                     >
                       {personalInfo.name}
                     </h3>

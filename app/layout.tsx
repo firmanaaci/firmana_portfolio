@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Space_Grotesk, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG, SITE_URL } from "./lib/site";
 import LoadingScreen from "./components/LoadingScreen";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["700", "900"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -88,7 +98,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth scroll-pt-24`}
+      className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} ${playfairDisplay.variable} h-full antialiased scroll-smooth scroll-pt-24`}
     >
       <body className="min-h-full flex flex-col">
         <LoadingScreen />
