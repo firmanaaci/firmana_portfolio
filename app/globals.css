@@ -10,8 +10,6 @@
   --font-serif: var(--font-playfair), serif;
   --font-dm: var(--font-jakarta), sans-serif;
   --font-syne: var(--font-space), sans-serif;
-  --font-jakarta: var(--font-jakarta), sans-serif;
-  --font-space: var(--font-space), sans-serif;
 
   /* Brand colors */
   --color-brand-dark:    #050d0c;

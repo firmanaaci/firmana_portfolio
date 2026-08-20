@@ -81,7 +81,7 @@ export default function Header() {
     <>
       {/* ── HEADER — selalu visible ── */}
       <header
-        className={`font-(family-name:--font-dm) fixed top-0 left-0 w-full z-60 transition-all duration-300 ${
+        className={`font-dm fixed top-0 left-0 w-full z-60 transition-all duration-300 ${
           scrolled
             ? "bg-[rgba(5,13,12,0.85)] backdrop-blur-xl border-b border-[rgba(20,184,140,0.1)] shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
             : "bg-[rgba(5,13,12,0.4)] backdrop-blur-md border-b border-transparent"
@@ -91,7 +91,7 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/#hero"
-            className="font-(family-name:--font-dm) font-extrabold text-xl text-[#f0faf8] no-underline tracking-[-0.03em] flex items-center"
+            className="font-dm font-extrabold text-xl text-[#f0faf8] no-underline tracking-[-0.03em] flex items-center"
           >
             <span className="text-brand-amber">{"<"}</span>
             Firmana
@@ -126,7 +126,7 @@ export default function Header() {
           {/* Desktop CTA */}
           <Link
             href="#kontak"
-            className="hidden md:inline-flex items-center gap-2 px-5 py-2.25 rounded-full font-(family-name:--font-syne) font-bold text-[13px] text-[#0a0a0a] no-underline hover:-translate-y-px transition-all duration-200 whitespace-nowrap"
+            className="hidden md:inline-flex items-center gap-2 px-5 py-2.25 rounded-full font-syne font-bold text-[13px] text-[#0a0a0a] no-underline hover:-translate-y-px transition-all duration-200 whitespace-nowrap"
             style={{ background: "linear-gradient(135deg, #f59e0b, #e07820)" }}
           >
             Let&apos;s Talk
@@ -206,7 +206,7 @@ export default function Header() {
                       <Link
                         href={href}
                         onClick={() => setIsOpen(false)}
-                        className={`font-(family-name:--font-syne) text-[34px] font-bold no-underline tracking-[-0.03em] leading-[1.2] flex items-baseline justify-between py-3 border-b border-white/6 transition-colors duration-200 ${
+                        className={`font-syne text-[34px] font-bold no-underline tracking-[-0.03em] leading-[1.2] flex items-baseline justify-between py-3 border-b border-white/6 transition-colors duration-200 ${
                           isActive
                             ? "text-[#f59e0b]"
                             : "text-[rgba(200,230,220,0.35)] hover:text-[#f0faf8]"
@@ -214,7 +214,7 @@ export default function Header() {
                       >
                         <span>{label}</span>
                         <span
-                          className={`text-[13px] font-(family-name:--font-syne) font-normal ${
+                          className={`text-[13px] font-syne font-normal ${
                             isActive ? "text-[#f59e0b]" : "text-brand-green"
                           }`}
                         >
@@ -235,7 +235,7 @@ export default function Header() {
                 <Link
                   href="/#kontak"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-4 rounded-full font-(family-name:--font-syne) font-bold text-[16px] text-[#0a0a0a] no-underline"
+                  className="flex items-center justify-center gap-2 w-full py-4 rounded-full font-syne font-bold text-[16px] text-[#0a0a0a] no-underline"
                   style={{
                     background: "linear-gradient(135deg, #f59e0b, #e07820)",
                   }}

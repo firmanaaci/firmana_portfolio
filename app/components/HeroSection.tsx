@@ -80,7 +80,7 @@ export default function HeroSection() {
   const stats = [{ num: "Pemalang", label: "Asal Saya" }];
 
   return (
-    <section className="font-(family-name:--font-dm) relative w-full min-h-screen overflow-hidden flex items-center bg-brand-dark">
+    <section className="font-dm relative w-full min-h-screen overflow-hidden flex items-center bg-brand-dark">
       <div
         className="absolute -top-[20%] -left-[10%] w-150 h-150rounded-full pointer-events-none"
         style={{
@@ -123,7 +123,7 @@ export default function HeroSection() {
 
           {/* Name */}
           <motion.h1
-            className="font-(family-name:--font-syne) text-[clamp(38px,5vw,64px)] font-extrabold text-[#f0faf8] leading-[1.05] tracking-[-0.02em] mb-1"
+            className="font-syne text-[clamp(38px,5vw,64px)] font-extrabold text-[#f0faf8] leading-[1.05] tracking-[-0.02em] mb-1"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
@@ -152,7 +152,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.25 }}
           >
             <span>I&apos;m a</span>
-            <span className="font-(family-name:--font-syne) font-semibold text-brand-amber" style={{ minHeight: "1.2em" }}>
+            <span className="font-syne font-semibold text-brand-amber" style={{ minHeight: "1.2em" }}>
               {currentText}
             </span>
             <span className="inline-block w-0.5 h-[1em] bg-brand-amber rounded-[1px] align-middle animate-blink" />
@@ -187,7 +187,7 @@ export default function HeroSection() {
           >
             <a
               href="#kontak"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-(family-name:--font-syne) font-bold text-[13px] tracking-[0.02em] text-[#0a0a0a] shadow-[0_4px_24px_rgba(245,158,11,0.25)] hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(245,158,11,0.38)] transition-all duration-250 cursor-pointer"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-syne font-bold text-[13px] tracking-[0.02em] text-[#0a0a0a] shadow-[0_4px_24px_rgba(245,158,11,0.25)] hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(245,158,11,0.38)] transition-all duration-250 cursor-pointer"
               style={{
                 background: "linear-gradient(135deg, #f59e0b, #e07820)",
               }}
@@ -206,7 +206,7 @@ export default function HeroSection() {
             <button
               type="button"
               onClick={openCvInWeb}
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-(family-name:--font-syne) font-semibold text-[13px] tracking-[0.02em] text-[#f0faf8] bg-transparent border border-[rgba(240,250,248,0.18)] hover:bg-[rgba(240,250,248,0.06)] hover:border-[rgba(240,250,248,0.35)] hover:-translate-y-0.5 transition-all duration-250 cursor-pointer"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-syne font-semibold text-[13px] tracking-[0.02em] text-[#f0faf8] bg-transparent border border-[rgba(240,250,248,0.18)] hover:bg-[rgba(240,250,248,0.06)] hover:border-[rgba(240,250,248,0.35)] hover:-translate-y-0.5 transition-all duration-250 cursor-pointer"
             >
               Download CV
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -251,7 +251,7 @@ export default function HeroSection() {
           >
             {stats.map(({ num, label }) => (
               <div key={label} className="text-center md:text-left">
-                <div className="font-(family-name:--font-syne) text-2xl font-extrabold text-[#f0faf8] leading-none">
+                <div className="font-syne text-2xl font-extrabold text-[#f0faf8] leading-none">
                   {num}
                 </div>
                 <div className="text-[11px] text-[rgba(200,230,220,0.4)] uppercase tracking-[0.08em] font-medium mt-1">
