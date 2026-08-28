@@ -36,6 +36,11 @@ body {
   color: white;
 }
 
+/* Contact form placeholder color */
+::placeholder {
+  color: rgba(143, 168, 167, 0.45);
+}
+
 /* =========================
    KEYFRAMES
 ========================= */
