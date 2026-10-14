@@ -28,17 +28,227 @@
 }
 
 /* =========================
+   CSS CUSTOM PROPERTIES — DARK THEME (default)
+========================= */
+:root,
+html.dark {
+  /* Backgrounds */
+  --bg-primary:       #050d0c;
+  --bg-secondary:     #0d1f1e;
+  --bg-section:       #050d0c;
+  --bg-hero-wave:     #050d0c;
+
+  /* Text */
+  --text-primary:     #f0ede6;
+  --text-heading:     #f0faf8;
+  --text-secondary:   rgba(200, 230, 220, 0.65);
+  --text-muted:       #5a7a79;
+  --text-muted2:      #8fa8a7;
+  --text-dark-label:  #1c4645;
+
+  /* Accents */
+  --accent-amber:     #f59e0b;
+  --accent-amber-text:#f59e0b;
+  --name-gradient:    linear-gradient(135deg, #f59e0b 0%, #f0c060 50%, #e07820 100%);
+  --ambient-teal:     rgba(20, 184, 140, 0.12);
+  --ambient-amber:    rgba(245, 158, 11, 0.08);
+
+  /* Panels / Cards (dark sections) */
+  --panel-bg:         rgba(28, 70, 69, 0.12);
+  --panel-bg-hover:   rgba(28, 70, 69, 0.20);
+  --panel-border:     rgba(245, 158, 11, 0.12);
+  --panel-border-hover: rgba(245, 158, 11, 0.30);
+
+  /* Info cards / chips */
+  --chip-bg:          rgba(255, 255, 255, 0.03);
+  --chip-border:      rgba(255, 255, 255, 0.06);
+  --chip-text:        #8fa8a7;
+
+  /* Form fields */
+  --field-bg:         rgba(255, 255, 255, 0.04);
+  --field-bg-focus:   rgba(255, 255, 255, 0.06);
+  --field-border:     rgba(255, 255, 255, 0.08);
+  --field-text:       #f0ede6;
+  --field-placeholder: rgba(240, 237, 230, 0.35);
+
+  /* Social links */
+  --social-bg:        rgba(255, 255, 255, 0.02);
+  --social-border:    rgba(255, 255, 255, 0.06);
+  --github-icon-color:#f0ede6;
+
+  /* Skill bars & tech stack pills */
+  --skill-track:      rgba(255, 255, 255, 0.06);
+  --tech-pill-bg:     rgba(255, 255, 255, 0.03);
+  --tech-pill-border: rgba(255, 255, 255, 0.07);
+  --tech-pill-text:   #8fa8a7;
+
+  /* Cards (Experiences, Projects) — Dark theme */
+  --card-bg:          rgba(28, 70, 69, 0.14);
+  --card-border:      rgba(245, 158, 11, 0.14);
+  --card-shadow:      rgba(0, 0, 0, 0.5);
+  --card-text-main:   #f0faf8;
+  --card-text-sub:    rgba(200, 230, 220, 0.65);
+  --card-badge-bg:    rgba(20, 184, 140, 0.08);
+  --card-watermark:   rgba(255, 255, 255, 0.03);
+  --card-btn-hover-bg: #f59e0b;
+  --card-btn-hover-text: #050d0c;
+  --card-btn-hover-border: #f59e0b;
+  --card-badge-hover-bg: rgba(245, 158, 11, 0.15);
+  --card-badge-hover-text: #f59e0b;
+  --card-badge-hover-border: rgba(245, 158, 11, 0.4);
+
+  /* Tag colors */
+  --tag-ai-color:        #f59e0b;
+  --tag-webapp-color:    #14b88c;
+  --tag-portfolio-color: #a78bfa;
+  --tag-mobile-color:    #818cf8;
+
+  /* Buttons */
+  --cta-subtle-bg:     linear-gradient(135deg, rgba(20,184,140,0.18), rgba(28,70,69,0.35));
+  --cta-subtle-text:   #f0faf8;
+  --cta-subtle-border: rgba(20,184,140,0.35);
+
+  /* Header */
+  --header-scrolled-bg: rgba(5, 13, 12, 0.85);
+  --header-default-bg:  rgba(5, 13, 12, 0.4);
+  --nav-text-inactive:  rgba(200, 230, 220, 0.65);
+  --nav-text-active:    #f0faf8;
+  --nav-pill-bg:        rgba(255, 255, 255, 0.04);
+  --nav-pill-border:    rgba(255, 255, 255, 0.07);
+
+  /* About image panel fade */
+  --about-img-fade-r:  linear-gradient(to right, transparent 50%, #050d0c 100%);
+  --about-img-fade-b:  linear-gradient(to top, #050d0c, transparent);
+  --about-bg-badge:    rgba(13, 34, 33, 0.75);
+
+  /* Contact section */
+  --contact-bg:        #050d0c;
+
+  /* Footer */
+  --footer-bg:         #050d0c;
+  --footer-text:       rgba(255, 255, 255, 0.7);
+  --footer-sub:        rgba(255, 255, 255, 0.5);
+  --footer-border:     rgba(255, 255, 255, 0.1);
+}
+
+/* ==============================================
+   CSS CUSTOM PROPERTIES — LIGHT THEME (Eye-Friendly)
+   Soft, warm off-white linen/sage canvas with rich
+   deep slate-teal typography and elevated cards.
+============================================== */
+html.light {
+  /* Backgrounds: Warm, calming, anti-glare */
+  --bg-primary:       #f8faf9;
+  --bg-secondary:     #eef3f1;
+  --bg-section:       #f8faf9;
+  --bg-hero-wave:     #f8faf9;
+
+  /* Text: Deep soothing slate-teal, high contrast without harsh black glare */
+  --text-primary:     #112524;
+  --text-heading:     #091918;
+  --text-secondary:   #3d5654;
+  --text-muted:       #53716f;
+  --text-muted2:      #43605e;
+  --text-dark-label:  #143a39;
+
+  /* Accents: Warm amber and crisp emerald */
+  --accent-amber:     #b45309;
+  --accent-amber-text:#b45309;
+  --name-gradient:    linear-gradient(135deg, #b45309 0%, #d97706 50%, #9a3412 100%);
+  --ambient-teal:     rgba(20, 184, 140, 0.06);
+  --ambient-amber:    rgba(245, 158, 11, 0.05);
+
+  /* Panels / Cards: Elevated clean white cards with gentle borders */
+  --panel-bg:         rgba(255, 255, 255, 0.90);
+  --panel-bg-hover:   #ffffff;
+  --panel-border:     rgba(17, 37, 36, 0.09);
+  --panel-border-hover: rgba(20, 184, 140, 0.35);
+
+  /* Info cards / chips */
+  --chip-bg:          rgba(17, 37, 36, 0.04);
+  --chip-border:      rgba(17, 37, 36, 0.08);
+  --chip-text:        #3d5654;
+
+  /* Form fields: Soft crisp white with subtle border */
+  --field-bg:         #ffffff;
+  --field-bg-focus:   #ffffff;
+  --field-border:     rgba(17, 37, 36, 0.15);
+  --field-text:       #112524;
+  --field-placeholder: rgba(17, 37, 36, 0.40);
+
+  /* Social links */
+  --social-bg:        #ffffff;
+  --social-border:    rgba(17, 37, 36, 0.08);
+  --github-icon-color:#181717;
+
+  /* Skill bars & tech stack pills */
+  --skill-track:      rgba(17, 37, 36, 0.08);
+  --tech-pill-bg:     #ffffff;
+  --tech-pill-border: rgba(17, 37, 36, 0.10);
+  --tech-pill-text:   #3d5654;
+
+  /* Cards (Experiences, Projects) */
+  --card-bg:          #ffffff;
+  --card-border:      rgba(17, 37, 36, 0.09);
+  --card-shadow:      rgba(17, 37, 36, 0.06);
+  --card-text-main:   #091918;
+  --card-text-sub:    #4a6563;
+  --card-badge-bg:    rgba(20, 184, 140, 0.08);
+  --card-watermark:   rgba(17, 37, 36, 0.04);
+  --card-btn-hover-bg: #14b88c;
+  --card-btn-hover-text: #ffffff;
+  --card-btn-hover-border: #14b88c;
+  --card-badge-hover-bg: #14b88c;
+  --card-badge-hover-text: #ffffff;
+  --card-badge-hover-border: #14b88c;
+
+  /* Tag colors with solid contrast */
+  --tag-ai-color:        #b45309;
+  --tag-webapp-color:    #0f766e;
+  --tag-portfolio-color: #6d28d9;
+  --tag-mobile-color:    #4338ca;
+
+  /* Buttons */
+  --cta-subtle-bg:     linear-gradient(135deg, #134e4a, #0f766e);
+  --cta-subtle-text:   #ffffff;
+  --cta-subtle-border: #134e4a;
+
+  /* Header */
+  --header-scrolled-bg: rgba(248, 250, 249, 0.92);
+  --header-default-bg:  rgba(248, 250, 249, 0.70);
+  --nav-text-inactive:  #4a6563;
+  --nav-text-active:    #0d5f57;
+  --nav-pill-bg:        rgba(17, 37, 36, 0.05);
+  --nav-pill-border:    rgba(17, 37, 36, 0.08);
+
+  /* About image panel fade */
+  --about-img-fade-r:  linear-gradient(to right, transparent 50%, #f8faf9 100%);
+  --about-img-fade-b:  linear-gradient(to top, #f8faf9, transparent);
+  --about-bg-badge:    rgba(255, 255, 255, 0.92);
+
+  /* Contact section */
+  --contact-bg:        #f8faf9;
+
+  /* Footer */
+  --footer-bg:         #edf2f0;
+  --footer-text:       #3d5654;
+  --footer-sub:        #5e7977;
+  --footer-border:     rgba(17, 37, 36, 0.08);
+}
+
+/* =========================
    BASE STYLES
 ========================= */
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-brand-dark);
-  color: white;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 /* Contact form placeholder color */
 ::placeholder {
-  color: rgba(143, 168, 167, 0.45);
+  color: var(--field-placeholder);
 }
 
 /* =========================
@@ -82,6 +292,14 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+@utility text-gradient-name {
+  background-image: var(--name-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
 }
 
 /* Progress bar */

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen flex flex-col font-sans" style={{ background: "#050d0c" }}>
+    <div className="min-h-screen flex flex-col font-sans" style={{ background: "var(--bg-primary)", color: "var(--text-primary)" }}>
       <Header />
       <main className="grow pt-16">
         <ProjectsPageClient />

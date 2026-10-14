@@ -80,19 +80,19 @@ export default function HeroSection() {
   const stats = [{ num: "Pemalang", label: "Asal Saya" }];
 
   return (
-    <section className="font-dm relative w-full min-h-screen overflow-hidden flex items-center bg-brand-dark">
+    <section className="font-dm relative w-full min-h-screen overflow-hidden flex items-center" style={{ background: "var(--bg-primary)" }}>
       <div
-        className="absolute -top-[20%] -left-[10%] w-150 h-150rounded-full pointer-events-none"
+        className="absolute -top-[20%] -left-[10%] w-150 h-150 rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(20,184,140,0.12) 0%, transparent 70%)",
+            "radial-gradient(circle, var(--ambient-teal) 0%, transparent 70%)",
         }}
       />
       <div
         className="absolute -bottom-[10%] right-[5%] w-125 h-125 rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%)",
+            "radial-gradient(circle, var(--ambient-amber) 0%, transparent 70%)",
         }}
       />
 
@@ -123,19 +123,16 @@ export default function HeroSection() {
 
           {/* Name */}
           <motion.h1
-            className="font-syne text-[clamp(38px,5vw,64px)] font-extrabold text-[#f0faf8] leading-[1.05] tracking-[-0.02em] mb-1"
+            className="font-syne text-[clamp(38px,5vw,64px)] font-extrabold leading-[1.05] tracking-[-0.02em] mb-1"
+            style={{ color: "var(--text-heading)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <span
-              className="relative"
+              className="relative text-gradient-name"
               style={{
-                background:
-                  "linear-gradient(135deg, #f59e0b 0%, #f0c060 50%, #e07820 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                color: "var(--accent-amber-text)",
               }}
             >
               Firmana Amri
@@ -146,29 +143,31 @@ export default function HeroSection() {
 
           {/* Typewriter */}
           <motion.div
-            className="flex items-center gap-2 flex-wrap justify-center md:justify-start mt-4 text-[clamp(16px,2vw,20px)] text-[rgba(240,250,248,0.55)] font-light"
+            className="flex items-center gap-2 flex-wrap justify-center md:justify-start mt-4 text-[clamp(16px,2vw,20px)] font-light"
+            style={{ color: "var(--text-secondary)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.25 }}
           >
             <span>I&apos;m a</span>
-            <span className="font-syne font-semibold text-brand-amber" style={{ minHeight: "1.2em" }}>
+            <span className="font-syne font-semibold" style={{ minHeight: "1.2em", color: "var(--accent-amber-text)" }}>
               {currentText}
             </span>
-            <span className="inline-block w-0.5 h-[1em] bg-brand-amber rounded-[1px] align-middle animate-blink" />
+            <span className="inline-block w-0.5 h-[1em] rounded-[1px] align-middle animate-blink" style={{ background: "var(--accent-amber)" }} />
           </motion.div>
 
           {/* Divider */}
           <div
             className="w-12 h-0.5 rounded-full my-5 self-center md:self-start"
             style={{
-              background: "linear-gradient(90deg, #f59e0b, transparent)",
+              background: "linear-gradient(90deg, var(--accent-amber), transparent)",
             }}
           />
 
           {/* Description */}
           <motion.p
-            className="text-[15px] text-[rgba(200,230,220,0.65)] leading-[1.8] max-w-120 mb-9 font-light mx-auto md:mx-0"
+            className="text-[15px] leading-[1.8] max-w-120 mb-9 font-light mx-auto md:mx-0"
+            style={{ color: "var(--text-secondary)" }}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
@@ -206,7 +205,19 @@ export default function HeroSection() {
             <button
               type="button"
               onClick={openCvInWeb}
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-syne font-semibold text-[13px] tracking-[0.02em] text-[#f0faf8] bg-transparent border border-[rgba(240,250,248,0.18)] hover:bg-[rgba(240,250,248,0.06)] hover:border-[rgba(240,250,248,0.35)] hover:-translate-y-0.5 transition-all duration-250 cursor-pointer"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-syne font-semibold text-[13px] tracking-[0.02em] bg-transparent border hover:-translate-y-0.5 transition-all duration-250 cursor-pointer"
+              style={{
+                color: "var(--text-heading)",
+                borderColor: "var(--panel-border)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--panel-border-hover)";
+                (e.currentTarget as HTMLButtonElement).style.background = "var(--panel-bg)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--panel-border)";
+                (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+              }}
             >
               Download CV
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -235,7 +246,14 @@ export default function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex items-center justify-center w-10 h-10 rounded-lg text-[18px] text-[rgba(200,230,220,0.5)] hover:bg-[rgba(20,184,140,0.1)] hover:text-brand-green hover:-translate-y-0.5 transition-all duration-200"
+                className="flex items-center justify-center w-10 h-10 rounded-lg text-[18px] hover:text-brand-green hover:-translate-y-0.5 transition-all duration-200"
+                style={{ color: "var(--text-muted2)", background: "transparent" }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "rgba(20,184,140,0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+                }}
               >
                 {icon}
               </a>
@@ -244,17 +262,18 @@ export default function HeroSection() {
 
           {/* Stats */}
           <motion.div
-            className="flex gap-8 pt-9 mt-9 border-t border-white/6 justify-center md:justify-start"
+            className="flex gap-8 pt-9 mt-9 border-t justify-center md:justify-start"
+            style={{ borderColor: "var(--chip-border)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.65 }}
           >
             {stats.map(({ num, label }) => (
               <div key={label} className="text-center md:text-left">
-                <div className="font-syne text-2xl font-extrabold text-[#f0faf8] leading-none">
+                <div className="font-syne text-2xl font-extrabold leading-none" style={{ color: "var(--text-heading)" }}>
                   {num}
                 </div>
-                <div className="text-[11px] text-[rgba(200,230,220,0.4)] uppercase tracking-[0.08em] font-medium mt-1">
+                <div className="text-[11px] uppercase tracking-[0.08em] font-medium mt-1" style={{ color: "var(--text-muted)" }}>
                   {label}
                 </div>
               </div>
@@ -291,7 +310,7 @@ export default function HeroSection() {
           <motion.div
             ref={orbRef}
             style={{ x: springX, y: springY }}
-            className="relative z-10 w-55 h-55 md:w-70 md:h-70 rounded-full overflow-hidden border-[3px] border-[rgba(20,184,140,0.3)] shadow-[0_0_0_8px_rgba(20,184,140,0.06),0_0_60px_rgba(20,184,140,0.15),0_30px_80px_rgba(0,0,0,0.5)]"
+            className="relative z-10 w-55 h-55 md:w-70 md:h-70 rounded-full overflow-hidden border-[3px] border-[rgba(20,184,140,0.3)] shadow-[0_0_0_8px_rgba(20,184,140,0.06),0_0_60px_rgba(20,184,140,0.12),0_20px_50px_-10px_var(--card-shadow)]"
           >
             <Image
               src="/formal.png"
@@ -327,7 +346,7 @@ export default function HeroSection() {
         >
           <path
             d="M0 80V40C240 0 480 80 720 40C960 0 1200 80 1440 40V80H0Z"
-            fill="#ffffff"
+            fill="var(--bg-hero-wave)"
           />
         </svg>
       </div>

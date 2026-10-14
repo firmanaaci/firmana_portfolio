@@ -38,7 +38,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-transparent text-[#1c4645]">
+    <div className="min-h-screen flex flex-col font-sans" style={{ background: "var(--bg-primary)", color: "var(--text-primary)" }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
@@ -53,9 +53,9 @@ export default function Home() {
       <main className="grow">
         <HeroSection />
 
-        <div className="relative isolate overflow-hidden bg-linear-to-b from-[#ffffff] via-[#ffffff] to-[#ffffff]">
-          <div className="pointer-events-none absolute -top-32 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[#1c4645]/12 blur-3xl" />
-          <div className="pointer-events-none absolute bottom-10 right-10 h-64 w-64 rounded-full bg-[#1c4645]/8 blur-3xl" />
+        <div className="relative isolate overflow-hidden" style={{ background: "var(--bg-section)" }}>
+          <div className="pointer-events-none absolute -top-32 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full blur-3xl" style={{ background: "rgba(28,70,69,0.08)" }} />
+          <div className="pointer-events-none absolute bottom-10 right-10 h-64 w-64 rounded-full blur-3xl" style={{ background: "rgba(28,70,69,0.05)" }} />
 
           <ServicesSection />
           <AboutSection />

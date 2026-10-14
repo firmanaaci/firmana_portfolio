@@ -79,10 +79,17 @@ export default function ProjectSection() {
   return (
     <section
       id="projects"
-      className="relative w-full py-32 overflow-hidden bg-white"
+      className="relative w-full py-32 overflow-hidden"
+      style={{ background: "var(--bg-section)" }}
     >
-      <div className="absolute top-40 left-0 w-72 h-72 bg-[#1c4645]/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-40 right-0 w-96 h-96 bg-brand-amber/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* Gold top rule */}
+      <div
+        className="absolute top-0 left-0 w-full h-px"
+        style={{ background: "linear-gradient(90deg, transparent, #f59e0b 30%, #f59e0b 70%, transparent)" }}
+      />
+
+      <div className="absolute top-40 left-0 w-72 h-72 rounded-full blur-[100px] pointer-events-none" style={{ background: "var(--ambient-teal)" }} />
+      <div className="absolute bottom-40 right-0 w-96 h-96 rounded-full blur-[100px] pointer-events-none" style={{ background: "var(--ambient-amber)" }} />
 
       <div className="container mx-auto px-6 lg:px-16 relative z-10">
         {/* Header */}
@@ -93,10 +100,14 @@ export default function ProjectSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-brand-amber font-bold uppercase tracking-widest text-sm mb-4">
-            Showcase
-          </p>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-[#1c4645] mb-6">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <span className="w-9 h-px" style={{ background: "var(--accent-amber)" }} />
+            <span className="text-[10px] uppercase tracking-[0.25em] font-semibold" style={{ color: "var(--accent-amber-text)" }}>
+              Portfolio — Showcase
+            </span>
+            <span className="w-9 h-px" style={{ background: "var(--accent-amber)" }} />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6" style={{ color: "var(--card-text-main)" }}>
             Proyek{" "}
             <span className="relative">
               Unggulan
@@ -114,14 +125,14 @@ export default function ProjectSection() {
               </svg>
             </span>
           </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="max-w-2xl mx-auto text-lg leading-relaxed" style={{ color: "var(--card-text-sub)" }}>
             Dua proyek pilihan utama saya. Lihat koleksi proyek lengkap di halaman khusus proyek.
           </p>
         </motion.div>
 
         {/* Loading / Cards */}
         {isLoading ? (
-          <div className="text-center text-[#1c4645] py-10 font-medium flex justify-center items-center gap-3">
+          <div className="text-center py-10 font-medium flex justify-center items-center gap-3" style={{ color: "var(--card-text-main)" }}>
             <span className="w-6 h-6 border-4 border-[#1c4645]/30 border-t-brand-amber rounded-full animate-spin" />
             Memuat proyek...
           </div>
@@ -136,13 +147,21 @@ export default function ProjectSection() {
             {projects.map((project, index) => (
               <motion.article
                 key={project.title + index}
-                className="group relative flex flex-col justify-between h-full rounded-[2.5rem] border border-gray-100 bg-white/80 backdrop-blur-xl p-8 md:p-10 shadow-2xl shadow-gray-200/50 hover:shadow-[#1c4645]/15 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+                className="group relative flex flex-col justify-between h-full rounded-[2.5rem] border backdrop-blur-xl p-8 md:p-10 shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+                style={{
+                  background: "var(--card-bg)",
+                  borderColor: "var(--card-border)",
+                  boxShadow: `0 25px 50px -12px var(--card-shadow)`,
+                }}
                 variants={{
                   hidden: { opacity: 0, y: 40 },
                   visible: { opacity: 1, y: 0 },
                 }}
               >
-                <div className="absolute -top-10 -right-6 text-[150px] font-black text-gray-50 group-hover:text-[#1c4645]/3 transition-colors duration-500 z-0 pointer-events-none select-none leading-none">
+                <div
+                  className="absolute -top-10 -right-6 text-[150px] font-black transition-colors duration-500 z-0 pointer-events-none select-none leading-none"
+                  style={{ color: "var(--card-watermark)" }}
+                >
                   0{index + 1}
                 </div>
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-0 bg-brand-amber group-hover:h-1/2 transition-all duration-500 ease-out rounded-r-full z-20" />
@@ -156,7 +175,7 @@ export default function ProjectSection() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 group/link"
                       >
-                        <h3 className="text-2xl md:text-3xl font-extrabold text-[#1c4645] group-hover/link:text-brand-amber transition-colors capitalize line-clamp-1">
+                        <h3 className="text-2xl md:text-3xl font-extrabold group-hover/link:text-brand-amber transition-colors capitalize line-clamp-1" style={{ color: "var(--card-text-main)" }}>
                           {project.title}
                         </h3>
                         <svg
@@ -174,29 +193,44 @@ export default function ProjectSection() {
                           />
                         </svg>
                       </a>
-                      <p className="text-xs font-bold text-[#1c4645]/50 mt-2 uppercase tracking-widest">
+                      <p className="text-xs font-bold mt-2 uppercase tracking-widest" style={{ color: "var(--card-text-sub)" }}>
                         {project.client}
                       </p>
                     </div>
                   </div>
-                  <p className="text-gray-500 text-base leading-relaxed mb-8 line-clamp-3">
+                  <p className="text-base leading-relaxed mb-8 line-clamp-3" style={{ color: "var(--card-text-sub)" }}>
                     {project.description}
                   </p>
                 </div>
 
-                <div className="relative z-10 pt-6 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 mt-auto">
+                <div className="relative z-10 pt-6 border-t flex flex-wrap items-center justify-between gap-4 mt-auto" style={{ borderColor: "var(--card-border)" }}>
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#1c4645]/5 text-[#1c4645] group-hover:bg-[#1c4645] group-hover:text-white transition-colors duration-300"
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 border"
+                        style={{
+                          background: "var(--card-badge-bg)",
+                          borderColor: "var(--panel-border)",
+                          color: "var(--card-text-main)",
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLSpanElement).style.background = "var(--card-badge-hover-bg)";
+                          (e.currentTarget as HTMLSpanElement).style.color = "var(--card-badge-hover-text)";
+                          (e.currentTarget as HTMLSpanElement).style.borderColor = "var(--card-badge-hover-border)";
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLSpanElement).style.background = "var(--card-badge-bg)";
+                          (e.currentTarget as HTMLSpanElement).style.color = "var(--card-text-main)";
+                          (e.currentTarget as HTMLSpanElement).style.borderColor = "var(--panel-border)";
+                        }}
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-brand-amber" />
                         {tech}
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#1c4645] bg-gray-50 px-3 py-2 rounded-xl border border-gray-100 group-hover:border-brand-amber/20 transition-colors">
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold px-3 py-2 rounded-xl border transition-colors" style={{ color: "var(--card-text-main)", background: "var(--card-badge-bg)", borderColor: "var(--card-border)" }}>
                     {project.highlight}
                   </div>
                 </div>
@@ -215,11 +249,17 @@ export default function ProjectSection() {
         >
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold no-underline transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold no-underline transition-all duration-300 hover:-translate-y-0.5 shadow-md cursor-pointer"
             style={{
-              background: "linear-gradient(135deg, #1c4645, #0d2221)",
-              color: "#f0ede6",
-              border: "1px solid rgba(28,70,69,0.4)",
+              background: "var(--cta-subtle-bg)",
+              color: "var(--cta-subtle-text)",
+              border: "1px solid var(--cta-subtle-border)",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.filter = "brightness(1.1)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.filter = "none";
             }}
           >
             Lihat Semua Proyek

@@ -10,6 +10,7 @@ import {
   useSpring,
   AnimatePresence,
 } from "framer-motion";
+import { useTheme } from "../lib/ThemeContext";
 
 const navLinks = [
   { label: "Experience", href: "/#experience", id: "experience" },
@@ -25,6 +26,7 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState("");
   const pathname = usePathname();
   const { scrollY } = useScroll();
+  const { theme, toggleTheme } = useTheme();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 30);
@@ -83,15 +85,23 @@ export default function Header() {
       <header
         className={`font-dm fixed top-0 left-0 w-full z-60 transition-all duration-300 ${
           scrolled
-            ? "bg-[rgba(5,13,12,0.85)] backdrop-blur-xl border-b border-[rgba(20,184,140,0.1)] shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
-            : "bg-[rgba(5,13,12,0.4)] backdrop-blur-md border-b border-transparent"
+            ? "backdrop-blur-xl border-b shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
+            : "backdrop-blur-md border-b border-transparent"
         }`}
+        style={{
+          background: scrolled
+            ? "var(--header-scrolled-bg)"
+            : "var(--header-default-bg)",
+          borderColor: scrolled ? "var(--panel-border)" : "transparent",
+          transition: "background 0.35s ease, border-color 0.35s ease",
+        }}
       >
         <div className="mx-auto max-w-300 flex items-center justify-between px-6 h-16">
           {/* Logo */}
           <Link
             href="/#hero"
-            className="font-dm font-extrabold text-xl text-[#f0faf8] no-underline tracking-[-0.03em] flex items-center"
+            className="font-dm font-extrabold text-xl no-underline tracking-[-0.03em] flex items-center"
+            style={{ color: "var(--text-heading)" }}
           >
             <span className="text-brand-amber">{"<"}</span>
             Firmana
@@ -100,7 +110,13 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/4 border border-white/[0.07] rounded-full p-1">
+          <nav
+            className="hidden md:flex items-center gap-1 rounded-full p-1 border"
+            style={{
+              background: "var(--nav-pill-bg)",
+              borderColor: "var(--nav-pill-border)",
+            }}
+          >
             {navLinks.map(({ label, href, id }) => {
               const isActive =
                 activeSection === id ||
@@ -111,11 +127,14 @@ export default function Header() {
                   key={label}
                   href={href}
                   onClick={() => setActiveSection(id)}
-                  className={`px-4.5 py-1.75 text-[13px] font-medium rounded-full tracking-[0.01em] whitespace-nowrap transition-all duration-300 no-underline border ${
+                  className={`px-4.5 py-1.75 text-[13px] rounded-full tracking-[0.01em] whitespace-nowrap transition-all duration-300 no-underline border ${
                     isActive
-                      ? "text-[#f0faf8] bg-[rgba(20,184,140,0.18)] border-[rgba(20,184,140,0.4)] shadow-[0_0_12px_rgba(20,184,140,0.25)]"
-                      : "text-[rgba(200,230,220,0.65)] border-transparent hover:text-[#f0faf8] hover:bg-white/8 hover:border-white/10"
+                      ? "bg-[rgba(20,184,140,0.18)] border-[rgba(20,184,140,0.4)] shadow-[0_0_12px_rgba(20,184,140,0.2)] font-semibold"
+                      : "border-transparent font-medium hover:bg-black/5 dark:hover:bg-white/8 hover:border-black/5 dark:hover:border-white/10"
                   }`}
+                  style={{
+                    color: isActive ? "var(--nav-text-active)" : "var(--nav-text-inactive)",
+                  }}
                 >
                   {label}
                 </Link>
@@ -123,23 +142,74 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Desktop CTA */}
-          <Link
-            href="#kontak"
-            className="hidden md:inline-flex items-center gap-2 px-5 py-2.25 rounded-full font-syne font-bold text-[13px] text-[#0a0a0a] no-underline hover:-translate-y-px transition-all duration-200 whitespace-nowrap"
-            style={{ background: "linear-gradient(135deg, #f59e0b, #e07820)" }}
-          >
-            Let&apos;s Talk
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path
-                d="M1 6h10M7 2l4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </Link>
+          {/* Theme Toggle + Desktop CTA */}
+          <div className="hidden md:flex items-center gap-2">
+            {/* Theme Toggle Button */}
+            <motion.button
+              onClick={toggleTheme}
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              className="relative w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border"
+              style={{
+                background: "var(--nav-pill-bg)",
+                borderColor: "var(--nav-pill-border)",
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <AnimatePresence mode="wait">
+                {theme === "dark" ? (
+                  <motion.svg
+                    key="sun"
+                    initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                    transition={{ duration: 0.3 }}
+                    width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                  </motion.svg>
+                ) : (
+                  <motion.svg
+                    key="moon"
+                    initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                    transition={{ duration: 0.3 }}
+                    width="15" height="15" viewBox="0 0 24 24" fill="none"
+                    stroke="#1c4645" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  >
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                  </motion.svg>
+                )}
+              </AnimatePresence>
+            </motion.button>
+
+            <Link
+              href="#kontak"
+              className="inline-flex items-center gap-2 px-5 py-2.25 rounded-full font-syne font-bold text-[13px] text-[#0a0a0a] no-underline hover:-translate-y-px transition-all duration-200 whitespace-nowrap"
+              style={{ background: "linear-gradient(135deg, #f59e0b, #e07820)" }}
+            >
+              Let&apos;s Talk
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path
+                  d="M1 6h10M7 2l4 4-4 4"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+          </div>
 
           {/* Hamburger — mobile only */}
           <button

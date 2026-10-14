@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Space_Grotesk, Playfair_Display } from "next/font/go
 import "./globals.css";
 import { SITE_CONFIG, SITE_URL } from "./lib/site";
 import LoadingScreen from "./components/LoadingScreen";
+import { ThemeProvider } from "./lib/ThemeContext";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -99,10 +100,30 @@ export default function RootLayout({
     <html
       lang="id"
       className={`${plusJakartaSans.variable} ${spaceGrotesk.variable} ${playfairDisplay.variable} h-full antialiased scroll-smooth scroll-pt-24`}
+      suppressHydrationWarning
     >
+      <head>
+        {/* Anti-FOUC: set theme class before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                try {
+                  var t = localStorage.getItem('portfolio-theme');
+                  var theme = (t === 'light' || t === 'dark') ? t : 'dark';
+                  document.documentElement.classList.add(theme);
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch(e){}
+              })()
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
-        <LoadingScreen />
-        {children}
+        <ThemeProvider>
+          <LoadingScreen />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

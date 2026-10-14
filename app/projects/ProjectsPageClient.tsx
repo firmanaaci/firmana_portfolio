@@ -66,10 +66,10 @@ const PROJECTS: Project[] = [
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 const TAG_STYLE: Record<string, { bg: string; color: string }> = {
-  "AI":         { bg: "rgba(245,158,11,0.15)", color: "#f59e0b" },
-  "Web App":    { bg: "rgba(20,184,140,0.12)", color: "#14b88c" },
-  "Portfolio":  { bg: "rgba(139,92,246,0.12)", color: "#a78bfa" },
-  "Mobile":     { bg: "rgba(99,102,241,0.12)", color: "#818cf8" },
+  "AI":         { bg: "rgba(245,158,11,0.15)", color: "var(--tag-ai-color, #f59e0b)" },
+  "Web App":    { bg: "rgba(20,184,140,0.12)", color: "var(--tag-webapp-color, #14b88c)" },
+  "Portfolio":  { bg: "rgba(139,92,246,0.12)", color: "var(--tag-portfolio-color, #a78bfa)" },
+  "Mobile":     { bg: "rgba(99,102,241,0.12)", color: "var(--tag-mobile-color, #818cf8)" },
 };
 
 const PLACEHOLDER_ICON: Record<string, string> = {
@@ -84,13 +84,13 @@ export default function ProjectsPageClient() {
 
       {/* Glows */}
       <div className="pointer-events-none absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full"
-        style={{ background: "radial-gradient(ellipse, rgba(20,184,140,0.10) 0%, transparent 70%)" }} />
+        style={{ background: "radial-gradient(ellipse, var(--ambient-teal) 0%, transparent 70%)" }} />
       <div className="pointer-events-none absolute -bottom-40 -right-40 w-[450px] h-[450px] rounded-full"
-        style={{ background: "radial-gradient(ellipse, rgba(245,158,11,0.07) 0%, transparent 70%)" }} />
+        style={{ background: "radial-gradient(ellipse, var(--ambient-amber) 0%, transparent 70%)" }} />
 
       {/* Gold top rule */}
       <div className="absolute top-0 left-0 w-full h-px"
-        style={{ background: "linear-gradient(90deg, transparent, #f59e0b 30%, #f59e0b 70%, transparent)" }} />
+        style={{ background: "linear-gradient(90deg, transparent, var(--accent-amber) 30%, var(--accent-amber) 70%, transparent)" }} />
 
       <div className="max-w-6xl mx-auto relative z-10">
 
@@ -104,7 +104,7 @@ export default function ProjectsPageClient() {
           <Link
             href="/#projects"
             className="inline-flex items-center gap-2 text-sm mb-6 no-underline transition-colors hover:opacity-80"
-            style={{ color: "#5a7a79" }}
+            style={{ color: "var(--text-muted)" }}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.8"
@@ -114,8 +114,8 @@ export default function ProjectsPageClient() {
           </Link>
 
           <div className="flex items-center gap-4 mb-4">
-            <span className="w-9 h-px" style={{ background: "#f59e0b" }} />
-            <span className="text-[10px] uppercase tracking-[0.25em] font-medium" style={{ color: "#f59e0b" }}>
+            <span className="w-9 h-px" style={{ background: "var(--accent-amber)" }} />
+            <span className="text-[10px] uppercase tracking-[0.25em] font-semibold" style={{ color: "var(--accent-amber-text)" }}>
               Featured Projects
             </span>
           </div>
@@ -126,13 +126,14 @@ export default function ProjectsPageClient() {
               fontFamily: "var(--font-playfair), 'Playfair Display', serif",
               fontSize: "clamp(32px, 5vw, 56px)",
               fontWeight: 900,
+              color: "var(--text-heading)",
             }}
           >
             Proyek{" "}
-            <span style={{ color: "#f59e0b", fontStyle: "italic" }}>Pilihan</span>{" "}
+            <span style={{ color: "var(--accent-amber-text)", fontStyle: "italic" }}>Pilihan</span>{" "}
             Saya
           </h1>
-          <p className="text-base font-light max-w-lg" style={{ color: "#5a7a79" }}>
+          <p className="text-base font-light max-w-lg" style={{ color: "var(--text-muted)" }}>
             Empat proyek terbaik yang saya kerjakan — dari sistem informasi hingga aplikasi berbasis AI.
           </p>
         </motion.div>
@@ -153,8 +154,8 @@ export default function ProjectsPageClient() {
                 key={project.title}
                 className="group flex flex-col rounded-2xl overflow-hidden transition-all duration-300"
                 style={{
-                  background: "rgba(28,70,69,0.08)",
-                  border: "1px solid rgba(245,158,11,0.08)",
+                  background: "var(--panel-bg)",
+                  border: "1px solid var(--panel-border)",
                 }}
                 variants={{
                   hidden:  { opacity: 0, y: 30 },
@@ -162,13 +163,13 @@ export default function ProjectsPageClient() {
                 }}
                 whileHover={{
                   y: -5,
-                  borderColor: "rgba(245,158,11,0.30)",
-                  backgroundColor: "rgba(28,70,69,0.18)",
+                  borderColor: "var(--panel-border-hover)",
+                  backgroundColor: "var(--panel-bg-hover)",
                 }}
               >
                 {/* ── Thumbnail ── */}
                 <div className="relative w-full h-52 overflow-hidden flex-shrink-0"
-                  style={{ background: "rgba(28,70,69,0.15)" }}>
+                  style={{ background: "var(--panel-bg-hover)" }}>
                   {project.image ? (
                     <Image
                       src={project.image}
@@ -191,7 +192,7 @@ export default function ProjectsPageClient() {
                   )}
 
                   {/* Overlay gradien bawah */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050d0c]/40 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
 
                   {/* Nomor & Tag */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
@@ -199,7 +200,7 @@ export default function ProjectsPageClient() {
                     <span
                       className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest"
                       style={{
-                        background: "rgba(5,13,12,0.7)",
+                        background: "rgba(0,0,0,0.45)",
                         backdropFilter: "blur(8px)",
                         border: `1px solid ${tagStyle.color}40`,
                         color: tagStyle.color,
@@ -210,7 +211,7 @@ export default function ProjectsPageClient() {
                     {/* Index number */}
                     <span
                       className="text-xs font-mono font-bold px-2.5 py-1 rounded-lg"
-                      style={{ background: "rgba(5,13,12,0.7)", color: "#3a5a59", backdropFilter: "blur(8px)" }}
+                      style={{ background: "rgba(0,0,0,0.45)", color: "var(--text-muted)", backdropFilter: "blur(8px)" }}
                     >
                       0{index + 1}
                     </span>
@@ -223,14 +224,14 @@ export default function ProjectsPageClient() {
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <h2
                       className="text-lg font-bold leading-snug transition-colors duration-200 group-hover:text-amber-400"
-                      style={{ color: "#f0ede6" }}
+                      style={{ color: "var(--text-heading)" }}
                     >
                       {project.title}
                     </h2>
                   </div>
 
                   {/* Deskripsi */}
-                  <p className="text-sm leading-relaxed mb-5 flex-grow line-clamp-3" style={{ color: "#5a7a79" }}>
+                  <p className="text-sm leading-relaxed mb-5 flex-grow line-clamp-3" style={{ color: "var(--text-muted)" }}>
                     {project.description}
                   </p>
 
@@ -241,9 +242,9 @@ export default function ProjectsPageClient() {
                         key={tech}
                         className="px-2.5 py-1 rounded-lg text-[11px] font-medium"
                         style={{
-                          background: "rgba(255,255,255,0.05)",
-                          border: "1px solid rgba(245,158,11,0.12)",
-                          color: "#8fa8a7",
+                          background: "var(--chip-bg)",
+                          border: "1px solid var(--panel-border)",
+                          color: "var(--chip-text)",
                         }}
                       >
                         {tech}
@@ -253,16 +254,16 @@ export default function ProjectsPageClient() {
 
                   {/* Buttons */}
                   <div className="flex items-center gap-3 pt-4"
-                    style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                    style={{ borderTop: "1px solid var(--chip-border)" }}>
                     <a
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold no-underline transition-all duration-200"
                       style={{
-                        background: "rgba(245,158,11,0.10)",
-                        border: "1px solid rgba(245,158,11,0.25)",
-                        color: "#f59e0b",
+                        background: "rgba(245,158,11,0.08)",
+                        border: "1px solid var(--panel-border-hover)",
+                        color: "var(--accent-amber-text)",
                       }}
                     >
                       {/* GitHub icon */}
@@ -281,7 +282,7 @@ export default function ProjectsPageClient() {
                         style={{
                           background: "rgba(20,184,140,0.10)",
                           border: "1px solid rgba(20,184,140,0.25)",
-                          color: "#14b88c",
+                          color: "var(--tag-webapp-color)",
                         }}
                       >
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -311,9 +312,10 @@ export default function ProjectsPageClient() {
             rel="noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold no-underline transition-all duration-300 hover:-translate-y-0.5"
             style={{
-              border:     "1px solid rgba(245,158,11,0.3)",
-              color:      "#f59e0b",
-              background: "rgba(245,158,11,0.05)",
+              border:     "1px solid var(--panel-border-hover)",
+              color:      "var(--accent-amber-text)",
+              background: "var(--panel-bg)",
+              boxShadow:  "0 4px 16px var(--card-shadow)",
             }}
           >
             Lihat semua repositori di GitHub

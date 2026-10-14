@@ -46,9 +46,7 @@ const palette = {
 // Panel besar (profile card, social card, contact form) — satu class dipakai
 // bersama supaya bentuk, warna, dan efek hover-nya selalu konsisten.
 const panelClass =
-  "rounded-3xl bg-[rgba(28,70,69,0.12)] border border-[rgba(245,158,11,0.12)] " +
-  "transition-all duration-300 ease-out hover:-translate-y-1 " +
-  "hover:bg-[rgba(28,70,69,0.20)] hover:border-[rgba(245,158,11,0.30)] " +
+  "rounded-3xl border transition-all duration-300 ease-out hover:-translate-y-1 " +
   "hover:shadow-[0_24px_60px_-28px_rgba(0,0,0,0.55)]";
 
 const panelEyebrowClass = "text-[10px] uppercase tracking-[0.2em] font-medium mb-5 text-[#f59e0b]";
@@ -61,16 +59,14 @@ const infoCardClass =
   "hover:shadow-[0_16px_40px_-20px_rgba(0,0,0,0.5)] " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b]/50";
 
-// Field form (nama / email / pesan) — border & background jadi CSS murni
-// (focus:) jadi tidak perlu lagi handler onFocus/onBlur manual.
+// Field form (nama / email / pesan)
 const fieldClass =
   "w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-300 " +
-  "bg-[rgba(255,255,255,0.04)] text-[#f0ede6] border border-[rgba(255,255,255,0.08)] " +
-  "placeholder:text-[rgba(240,237,230,0.35)] " +
-  "focus:border-[rgba(245,158,11,0.40)] focus:bg-[rgba(255,255,255,0.06)] " +
+  "border " +
+  "focus:border-[rgba(245,158,11,0.40)] " +
   "focus-visible:ring-2 focus-visible:ring-[#f59e0b]/30";
 
-const fieldLabelClass = "block text-[11px] uppercase tracking-[0.15em] font-medium mb-2 text-[#5a7a79]";
+const fieldLabelClass = "block text-[11px] uppercase tracking-[0.15em] font-medium mb-2";
 
 const ctaFocusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b] " +
@@ -95,7 +91,7 @@ const socialLinks = [
     href: "https://github.com/firmanaamri",
     label: "GitHub",
     username: "@firmanaamri",
-    color: "#f0ede6",
+    color: "var(--github-icon-color, #181717)",
   },
   {
     icon: <FaLinkedin />,
@@ -196,39 +192,35 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="kontak" className="relative w-full py-32 bg-brand-dark overflow-hidden">
-      {/* LENGKUNGAN ATAS (CURVE UP) + STACKED SHADOW */}
+    <section id="kontak" className="relative w-full py-32 overflow-hidden" style={{ background: "var(--contact-bg)" }}>
+      {/* LENGKUNGAN ATAS (CURVE UP) */}
       <div className="absolute bottom-full left-0 w-full leading-none z-20 pointer-events-none">
         <svg
           viewBox="0 0 1440 120"
           className="w-full block h-10 md:h-25 overflow-visible"
           preserveAspectRatio="none"
           style={{
-            filter: `
-              drop-shadow(0px -10px 8px rgba(0, 0, 0, 0.08)) 
-              drop-shadow(0px -25px 20px rgba(0, 0, 0, 0.06)) 
-              drop-shadow(0px -45px 40px rgba(0, 0, 0, 0.03))
-            `,
+            filter: "drop-shadow(0px -3px 8px rgba(0, 0, 0, 0.03))",
           }}
         >
-          <path d="M0,120 C480,0 960,0 1440,120 Z" fill="#050d0c" />
+          <path d="M0,120 C480,0 960,0 1440,120 Z" fill="var(--contact-bg)" />
         </svg>
       </div>
 
       {/* Ambient glows */}
       <div
         className="pointer-events-none absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full"
-        style={{ background: "radial-gradient(ellipse, rgba(20,184,140,0.10) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse, var(--ambient-teal) 0%, transparent 70%)" }}
       />
       <div
         className="pointer-events-none absolute -bottom-40 -right-40 w-[450px] h-[450px] rounded-full"
-        style={{ background: "radial-gradient(ellipse, rgba(245,158,11,0.06) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse, var(--ambient-amber) 0%, transparent 70%)" }}
       />
 
       {/* Gold top rule */}
       <div
         className="absolute top-0 left-0 w-full h-px"
-        style={{ background: "linear-gradient(90deg, transparent, #f59e0b 30%, #f59e0b 70%, transparent)" }}
+        style={{ background: "linear-gradient(90deg, transparent, var(--accent-amber) 30%, var(--accent-amber) 70%, transparent)" }}
       />
 
       <div className="container mx-auto px-6 lg:px-16 relative z-10">
@@ -242,14 +234,14 @@ export default function ContactSection() {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center justify-center gap-4 mb-6">
-            <span className="w-9 h-px" style={{ background: "#f59e0b" }} />
+            <span className="w-9 h-px" style={{ background: "var(--accent-amber)" }} />
             <span
-              className="text-[10px] uppercase tracking-[0.25em] font-medium"
-              style={{ color: "#f59e0b" }}
+              className="text-[10px] uppercase tracking-[0.25em] font-semibold"
+              style={{ color: "var(--accent-amber-text)" }}
             >
               Connect — Contact
             </span>
-            <span className="w-9 h-px" style={{ background: "#f59e0b" }} />
+            <span className="w-9 h-px" style={{ background: "var(--accent-amber)" }} />
           </div>
           <h2
             className="leading-tight mb-4"
@@ -257,15 +249,15 @@ export default function ContactSection() {
               fontFamily: "var(--font-playfair), 'Playfair Display', serif",
               fontSize: "clamp(36px, 4.5vw, 54px)",
               fontWeight: 900,
-              color: "#f0ede6",
+              color: "var(--text-heading)",
             }}
           >
             Get In{" "}
-            <span style={{ color: "#f59e0b", fontStyle: "italic" }}>Touch</span>
+            <span style={{ color: "var(--accent-amber-text)", fontStyle: "italic" }}>Touch</span>
           </h2>
           <p
             className="max-w-2xl mx-auto text-base font-light leading-relaxed"
-            style={{ color: "#5a7a79" }}
+            style={{ color: "var(--text-muted)" }}
           >
             Saya selalu terbuka untuk mendiskusikan proyek baru, ide kreatif,
             atau peluang kerja sama. Berikut informasi lengkap tentang saya.
@@ -278,6 +270,10 @@ export default function ContactSection() {
           {/* ══ KOLOM 1: Profile Card ══ */}
           <motion.div
             className={`relative p-7 overflow-hidden flex flex-col ${panelClass}`}
+            style={{
+              background: "var(--panel-bg)",
+              borderColor: "var(--panel-border)",
+            }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -307,7 +303,7 @@ export default function ContactSection() {
                 <div className="min-w-0">
                   <h3
                     className="text-lg font-extrabold leading-tight"
-                    style={{ color: "#f0ede6", fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                    style={{ color: "var(--text-heading)", fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
                   >
                     {personalInfo.name}
                   </h3>
@@ -332,7 +328,7 @@ export default function ContactSection() {
               </span>
 
               {/* Bio */}
-              <p className="text-sm leading-[1.8] font-light flex-1" style={{ color: "#8fa8a7" }}>
+              <p className="text-sm leading-[1.8] font-light flex-1" style={{ color: "var(--text-muted2)" }}>
                 {personalInfo.bio}
               </p>
 
@@ -341,7 +337,20 @@ export default function ContactSection() {
                 {techHighlights.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 rounded-full text-[10px] font-medium transition-colors duration-200 bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] text-[#8fa8a7] hover:border-[rgba(245,158,11,0.35)] hover:text-[#f0ede6]"
+                    className="px-2.5 py-1 rounded-full text-[10px] font-medium transition-colors duration-200 border"
+                    style={{
+                      background: "var(--chip-bg)",
+                      borderColor: "var(--chip-border)",
+                      color: "var(--chip-text)",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLSpanElement).style.borderColor = "var(--panel-border-hover)";
+                      (e.currentTarget as HTMLSpanElement).style.color = "var(--text-heading)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLSpanElement).style.borderColor = "var(--chip-border)";
+                      (e.currentTarget as HTMLSpanElement).style.color = "var(--chip-text)";
+                    }}
                   >
                     {tech}
                   </span>
@@ -355,12 +364,12 @@ export default function ContactSection() {
                     key={card.label}
                     className="flex items-center gap-3 px-4 py-2.5 rounded-xl"
                     style={{
-                      background: "rgba(255,255,255,0.03)",
-                      border: "1px solid rgba(255,255,255,0.06)",
+                      background: "var(--chip-bg)",
+                      border: "1px solid var(--chip-border)",
                     }}
                   >
                     <span className="text-[#f59e0b] flex-shrink-0">{card.icon}</span>
-                    <span className="text-xs text-[#8fa8a7] truncate">{card.value}</span>
+                    <span className="text-xs truncate" style={{ color: "var(--chip-text)" }}>{card.value}</span>
                   </div>
                 ))}
               </div>
@@ -370,7 +379,19 @@ export default function ContactSection() {
                 href={personalInfo.cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-5 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-[13px] transition-all duration-300 no-underline bg-transparent text-[#f0ede6] border border-[rgba(240,250,248,0.18)] hover:border-[rgba(240,250,248,0.35)] hover:bg-[rgba(240,250,248,0.06)] ${ctaFocusRing}`}
+                className={`mt-5 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-[13px] transition-all duration-300 no-underline bg-transparent border ${ctaFocusRing}`}
+                style={{
+                  color: "var(--text-heading)",
+                  borderColor: "var(--chip-border)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--panel-border-hover)";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "var(--panel-bg)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--chip-border)";
+                  (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+                }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -383,6 +404,10 @@ export default function ContactSection() {
           {/* ══ KOLOM 2: Social Links ══ */}
           <motion.div
             className={`p-7 flex flex-col ${panelClass}`}
+            style={{
+              background: "var(--panel-bg)",
+              borderColor: "var(--panel-border)",
+            }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -399,16 +424,16 @@ export default function ContactSection() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 rounded-xl transition-all duration-300 group no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f59e0b]/40"
                   style={{
-                    background: "rgba(255,255,255,0.02)",
-                    border: "1px solid rgba(255,255,255,0.06)",
+                    background: "var(--social-bg)",
+                    border: "1px solid var(--social-border)",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = social.color + "50";
                     e.currentTarget.style.background = social.color + "0A";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)";
-                    e.currentTarget.style.background = "rgba(255,255,255,0.02)";
+                    e.currentTarget.style.borderColor = "var(--social-border)";
+                    e.currentTarget.style.background = "var(--social-bg)";
                   }}
                 >
                   <div
@@ -418,8 +443,8 @@ export default function ContactSection() {
                     {social.icon}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium" style={{ color: "#f0ede6" }}>{social.label}</p>
-                    <p className="text-xs truncate" style={{ color: "#5a7a79" }}>{social.username}</p>
+                    <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>{social.label}</p>
+                    <p className="text-xs truncate" style={{ color: "var(--text-muted)" }}>{social.username}</p>
                   </div>
                   <svg
                     className="w-4 h-4 flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1"
@@ -436,6 +461,10 @@ export default function ContactSection() {
           {/* ══ KOLOM 3: Form Kirim Pesan ══ */}
           <motion.div
             className={`p-7 flex flex-col ${panelClass}`}
+            style={{
+              background: "var(--panel-bg)",
+              borderColor: "var(--panel-border)",
+            }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -446,7 +475,7 @@ export default function ContactSection() {
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-3.5 flex flex-col flex-1">
               {/* Name */}
               <div>
-                <label htmlFor="contact-name" className={fieldLabelClass}>Nama</label>
+                <label htmlFor="contact-name" className={fieldLabelClass} style={{ color: "var(--text-muted)" }}>Nama</label>
                 <input
                   id="contact-name"
                   type="text"
@@ -456,12 +485,17 @@ export default function ContactSection() {
                   onChange={handleChange}
                   placeholder="Nama lengkap kamu"
                   className={fieldClass}
+                  style={{
+                    background: "var(--field-bg)",
+                    borderColor: "var(--field-border)",
+                    color: "var(--field-text)",
+                  }}
                 />
               </div>
 
               {/* Email */}
               <div>
-                <label htmlFor="contact-email" className={fieldLabelClass}>Email</label>
+                <label htmlFor="contact-email" className={fieldLabelClass} style={{ color: "var(--text-muted)" }}>Email</label>
                 <input
                   id="contact-email"
                   type="email"
@@ -471,12 +505,17 @@ export default function ContactSection() {
                   onChange={handleChange}
                   placeholder="email@kamu.com"
                   className={fieldClass}
+                  style={{
+                    background: "var(--field-bg)",
+                    borderColor: "var(--field-border)",
+                    color: "var(--field-text)",
+                  }}
                 />
               </div>
 
               {/* Message — flex-1 agar mengisi ruang tersisa */}
               <div className="flex flex-col flex-1">
-                <label htmlFor="contact-message" className={fieldLabelClass}>Pesan</label>
+                <label htmlFor="contact-message" className={fieldLabelClass} style={{ color: "var(--text-muted)" }}>Pesan</label>
                 <textarea
                   id="contact-message"
                   name="message"
@@ -486,6 +525,11 @@ export default function ContactSection() {
                   onChange={handleChange}
                   placeholder="Halo Firmana, saya ingin..."
                   className={`${fieldClass} resize-none flex-1`}
+                  style={{
+                    background: "var(--field-bg)",
+                    borderColor: "var(--field-border)",
+                    color: "var(--field-text)",
+                  }}
                 />
               </div>
 
@@ -572,7 +616,7 @@ export default function ContactSection() {
           />
           <p
             className="text-base italic font-light leading-relaxed"
-            style={{ color: "#5a7a79" }}
+            style={{ color: "var(--text-muted)" }}
           >
             &ldquo;Mari berkolaborasi dan wujudkan ide digital Anda menjadi kenyataan.&rdquo;
           </p>
