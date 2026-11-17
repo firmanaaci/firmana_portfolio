@@ -142,8 +142,8 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Theme Toggle + Desktop CTA */}
-          <div className="hidden md:flex items-center gap-2">
+          {/* Actions: Theme Toggle, Desktop CTA, & Mobile Hamburger */}
+          <div className="flex items-center gap-2">
             {/* Theme Toggle Button */}
             <motion.button
               onClick={toggleTheme}
@@ -193,9 +193,10 @@ export default function Header() {
               </AnimatePresence>
             </motion.button>
 
+            {/* Desktop CTA */}
             <Link
               href="#kontak"
-              className="inline-flex items-center gap-2 px-5 py-2.25 rounded-full font-syne font-bold text-[13px] text-[#0a0a0a] no-underline hover:-translate-y-px transition-all duration-200 whitespace-nowrap"
+              className="hidden md:inline-flex items-center gap-2 px-5 py-2.25 rounded-full font-syne font-bold text-[13px] text-[#0a0a0a] no-underline hover:-translate-y-px transition-all duration-200 whitespace-nowrap"
               style={{ background: "linear-gradient(135deg, #f59e0b, #e07820)" }}
             >
               Let&apos;s Talk
@@ -209,32 +210,44 @@ export default function Header() {
                 />
               </svg>
             </Link>
-          </div>
 
-          {/* Hamburger — mobile only */}
-          <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-[10px] cursor-pointer gap-1.25 transition-colors duration-200 border"
-            style={{
-              background: isOpen
-                ? "rgba(20,184,140,0.15)"
-                : "rgba(255,255,255,0.06)",
-              borderColor: isOpen
-                ? "rgba(20,184,140,0.4)"
-                : "rgba(255,255,255,0.12)",
-            }}
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle Menu"
-          >
-            <span
-              className={`block h-[1.5px] bg-[#f0faf8] rounded-sm transition-all duration-300 origin-center ${isOpen ? "w-4 translate-y-[6.5px] rotate-45" : "w-4.5"}`}
-            />
-            <span
-              className={`block h-[1.5px] bg-[#f0faf8] rounded-sm transition-all duration-300 w-3.5 ${isOpen ? "opacity-0 scale-x-0" : "opacity-100"}`}
-            />
-            <span
-              className={`block h-[1.5px] bg-[#f0faf8] rounded-sm transition-all duration-300 origin-center ${isOpen ? "w-4 -translate-y-[6.5px] -rotate-45" : "w-2.5"}`}
-            />
-          </button>
+            {/* Hamburger — mobile only */}
+            <button
+              className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-[10px] cursor-pointer gap-1.25 transition-colors duration-200 border"
+              style={{
+                background: isOpen
+                  ? "rgba(20,184,140,0.15)"
+                  : "var(--nav-pill-bg)",
+                borderColor: isOpen
+                  ? "rgba(20,184,140,0.4)"
+                  : "var(--nav-pill-border)",
+              }}
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle Menu"
+            >
+              <span
+                className={`block h-[1.5px] rounded-sm transition-all duration-300 origin-center ${
+                  isOpen
+                    ? "w-4 translate-y-[6.5px] rotate-45 bg-[#f0faf8]"
+                    : "w-4.5 bg-[var(--text-heading)]"
+                }`}
+              />
+              <span
+                className={`block h-[1.5px] rounded-sm transition-all duration-300 w-3.5 ${
+                  isOpen
+                    ? "opacity-0 scale-x-0 bg-[#f0faf8]"
+                    : "opacity-100 bg-[var(--text-heading)]"
+                }`}
+              />
+              <span
+                className={`block h-[1.5px] rounded-sm transition-all duration-300 origin-center ${
+                  isOpen
+                    ? "w-4 -translate-y-[6.5px] -rotate-45 bg-[#f0faf8]"
+                    : "w-2.5 bg-[var(--text-heading)]"
+                }`}
+              />
+            </button>
+          </div>
         </div>
 
         {/* Scroll progress bar */}
